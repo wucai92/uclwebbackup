@@ -1,0 +1,165 @@
+html, body, #wrapper{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+#header{
+	position: absolute;
+    height: 50px;
+    width: 100%;
+	left:0px;
+	top:0px;
+	background-color: rgba(208,215,225,0);
+	z-index:1;
+	font-size:30px;
+	font-family: 'Roboto', sans-serif;
+	color: #ffffff;
+}
+
+#header1{
+	position: absolute;
+    height: 50px;
+    width: 50%;
+	left:0px;
+	top:0px;
+	background-color: rgba(208,215,225,0);
+	z-index:1;
+}
+
+#a1{
+	position: absolute;
+    height: 50px;
+    width: 20px;
+	right:250px;
+	top:10px;
+	font-size:25px;
+}
+
+#a2{
+	position: absolute;
+    height: 50px;
+    width: 20px;
+	right:150px;
+	top:10px;
+	font-size:25px;
+}
+  
+a:link {color:#FFFFFF;}  
+a:visited {color:#FFFF88;} 
+a:hover {color:#FF00FF;}
+
+#left{
+	position: absolute;
+    height: 400px;
+    width: 300px;
+	left:25px;
+	bottom:30px;
+	background-color: rgba(55,62,74,0.8);
+	z-index:1;
+	text-align:center;
+	font-size:20px;
+	font-family: 'Roboto', sans-serif;
+	color: #ffffff;
+	border-radius: 10px;
+}
+
+#left1{
+	position: absolute;
+    height: 30px;
+    width: 300px;
+	left:0px;
+	bottom:360px;
+	z-index:2;
+	font-size:20px;
+}
+
+#left2{
+	position: absolute;
+    height: 60px;
+    width: 300px;
+	left:0px;
+	bottom:280px;
+	z-index:2;
+	font-size:15px;
+}
+
+#left3{
+	position: absolute;
+	z-index:2;
+	left:60px;
+	bottom:270px;
+}
+
+#left4{
+	position: absolute;
+	z-index:2;
+	left:60px;
+	bottom:210px;
+}
+
+#left5{
+	position: absolute;
+    height: 200px;
+    width: 300px;
+	left:0px;
+	bottom:0px;
+	z-index:2;
+}
+
+#right{
+	position: absolute;
+    height: 650px;
+    width: 300px;
+	right:25px;
+	bottom:30px;
+	background-color: rgba(55,62,74,0.8);
+	z-index:100;
+	text-align:center;
+	font-size:20px;
+	font-family: 'Roboto', sans-serif;
+	color: #ffffff;
+	border-radius: 10px;
+}
+
+#right1{
+	position: absolute;
+    height: 40px;
+    width: 300px;
+	top:10px;
+}
+
+#right2{
+	position: absolute;
+    height: 110px;
+    width: 300px;
+	top:60px;
+	font-size:15px;
+}
+
+#right3{
+	position: absolute;
+    height: 150px;
+    width: 300px;
+	top:180px;
+}
+
+#right4{
+	position: absolute;
+    height: 150px;
+    width: 300px;
+	top:340px;
+}
+
+#right5{
+	position: absolute;
+    height: 150px;
+    width: 300px;
+	bottom:0px;
+}
+
+
+#map-canvas{
+    height: 100%;
+    width: 100%;
+}
