@@ -10,15 +10,15 @@
 
 var moment = require('moment');
 
-var portNumber = 8876;
+var portNumber = 886;
 
 var mysql = require('mysql');
 
 // MySQL Connection Variables
 var connection = mysql.createConnection({
   host     : 'dev.spatialdatacapture.org',
-  user     : 'ucfncwu',
-  password : 'qurikidiba',
+  user     : 'uc',
+  password : 'qu',
   database : 'ucfncwu'
 });
 
