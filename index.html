@@ -6,38 +6,70 @@
 	<link rel='stylesheet' href='./css/style.css' type='text/css'/>
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="https://rawgit.com/highcharts/rounded-corners/master/rounded-corners.js"></script>
 </head>
 <body>
 <div id='wrapper'>
      <div id='header'>
+	 <img src="img/logo.png" alt="logo" width="30" height="30">
 	 <div id='header1'>Singarpore Public Transport</div>
 	 <div id='a1'><a href="https://www.w3schools.com/html/" target="_blank">About</a></div>
 	 <div id='a2'><a href="https://developers.google.com/maps/documentation/javascript/tutorial" target="_blank">Analysis</a></div>
 	 </div>
      <div id='map-canvas'></div>
 	 <div id='left'>
-	 <div id='left1'>TRAIN FLOWS IN SINGARPORE</div>
-	 <div id='left2'>Janurary 1st</div>
-	 <div id='left3'>
-	 <input type="radio" name="choice" checked="checked" value="static" />static
-     <input type="radio" name="choice" value="dynamic" />dynamic
-	 </div>
-	 <div id='left4'></div>
-	 <div id='left5'></div>
-	 </div>
-	 <div id='right'>
-	 <div id='right1'></div>
-	 <div id='right2'></div>
-	 <div id='right3'></div>
-	 <div id='right4'></div>
-	 <div id='right5'></div>
-	 </div>
+		 <div id='left1'>
+			<div id='left11'>TRAIN FLOWS</div>
+			<div id='left12'>Janurary 1st</div>
+			<div id="left13Q">TRAIN LINE</div>
+			<div id='left13' class="onoffswitch1">
+				<input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox1" id="myonoffswitch1" onclick = 'onoff()' checked>
+				<label class="onoffswitch1-label1" for="myonoffswitch1">
+					<span class="onoffswitch1-inner1"></span>
+					<span class="onoffswitch1-switch1"></span>
+				</label>
+				<div id='left14Q'>CENTRALITY</div>
+		    </div>
+				<div id='left14' class="onoffswitch2">
+					<input type="checkbox" name="onoffswitch1" class="onoffswitch2-checkbox2" id="myonoffswitch2" onclick = 'onoff2()' checked>
+					<label class="onoffswitch2-label2" for="myonoffswitch2">
+						<span class="onoffswitch2-inner2"></span>
+						<span class="onoffswitch2-switch2"></span>
+					</label>
+				</div>
+		 </div>
+		 <div id='left2'></div>
+		 <div id='left3'></div>
+	</div>
+	<div id='right'>
+	    <img src="img/close.png" alt="close" width="15" height="15" onclick="hidebar()">
+		<div id='right1'></div>
+		<div id='right2'>
+			<div id='right21'>
+				<div id='codename'>ID</div>
+				<div id='code'></div>
+				<div id='betname'>bet</div>
+				<div id='bet'></div>
+			</div>
+			<div id='right22'>
+				<div id='yearname'>year</div>
+				<div id='year'></div>
+				<div id='eigenname'>eigen</div>
+				<div id='eigen'></div>
+			</div>
+			<div id='right23'></div>
+		</div>
+		<div id='right3'></div>
+		<div id='right4'></div>
+		<div id='right5'></div>
+	</div>
 </div>
 
 <!-- The Javascript from external websites gets Loaded Here -->
 
 <!-- Task 2.1:  Load jQuery here (below this line) -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATCjbEhaVw8X9eoJcjodoyE3rBiA_Qp6g&libraries=visualization"></script>
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATCjbEhaVw8X9eoJcjodoyE3rBiA_Qp6g&libraries=visualization"></script>-->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOUj_WDSypzh532YZOE0w4UJZKje5uyTY&libraries=visualization"></script>
 <script type='text/javascript' src='http://arshaw.com/xdate/downloads/0.8/xdate.js'></script>
 <script type='text/javascript' src='./js/mapStyle.js'></script>
 <script type='text/javascript' src='./js/charts.js'></script>
@@ -47,7 +79,12 @@
 	var map;
 	var markerArray = [];
 	var dataArray = [];
+	var selectedstation;
+	var selectedtime = '0';
 	var infowindow = new google.maps.InfoWindow({maxWidth: 300});
+	var transitLayer = new google.maps.TransitLayer();
+	
+	document.getElementById("right").style.visibility="hidden";
 	
 	$(document).ready(function() {
 
@@ -61,12 +98,13 @@
 				styles: darkMap,
 				disableDefaultUI: true
 			};
-			
+
 			getData("7");
 			
 			// Task 3.2 - Write the map into our DIV element
 			map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
+			transitLayer.setMap(map);
+			
 			/*google.maps.event.addListener(map, 'dragend', function() {
 				//var bounds = map.getBounds();
 				//console.log("SW: " + bounds.getSouthWest() + " NE: " + bounds.getNorthEast());
@@ -74,8 +112,7 @@
 				//getData(map.getCenter().lat(), map.getCenter().lng());
 			});*/
 			
-			var transitLayer = new google.maps.TransitLayer();
-            transitLayer.setMap(map);
+			
 			
             //map.data.loadGeoJson("https://api.myjson.com/bins/pax40")
             //map.data.addGeoJson(points);
@@ -119,9 +156,10 @@
 			
     //chart1
 	function gettotaldailyflow() {
-				var url = "http://dev.spatialdatacapture.org:8876/data/flow";
+				//var url = "http://dev.spatialdatacapture.org:8876/data/flow";
+				var url = "https://sgmrtanalysis.herokuapp.com/data/flow";
 				$.getJSON( url , function( data ) {
-					console.log(data[0]);
+					//console.log(data[0]);
 					var flowdata = Object.values(data[0]);
 					var credits = {
 			enabled: false
@@ -139,7 +177,7 @@
 				text: 'Total Flow',
 				style: {
 			color: '#BFC7CF',
-				fontSize: "15px",
+				fontSize: "12px",
 				fontWeight: "light",
 				fontFamily: "Roboto"
 			}
@@ -147,10 +185,10 @@
 			var xAxis = {
 				categories: ['6AM','7AM','8AM','9AM','10AM','11AM','12AM','1PM','2PM','3PM','4PM','5PM','6PM','7PM','8PM','9PM'],
 			labels: {
-			rotation: -45,
+			rotation: 0,
 					style: {
 						 color: '#BFC7CF',
-							 fontSize: "10px",
+							 fontSize: "8px",
 							 fontWeight: "light",
 							 fontFamily: "Roboto"
 			}
@@ -165,7 +203,7 @@
 		labels: {
 					style: {
 						 color: '#BFC7CF',
-							 fontSize: "10px",
+							 fontSize: "8px",
 							 fontWeight: "light",
 							 fontFamily: "Roboto"
 			}
@@ -177,13 +215,27 @@
 					point: {
 						events: {
                 click: function () {
-									var time = this.x;
-									console.log(time);
-									getData(time+6);
+									var time = this.x + 6;
+									selectedtime = String(time);
+									if (selectedstation != ''){
+										gettop5(time,selectedstation);
+										getData(time);
+											$.getJSON( "https://sgmrtanalysis.herokuapp.com/data/centrality/"+ selectedtime , function( data ) {
+												$.each(data,function(k,v){
+													if(v.stations_ID == selectedstation){
+														document.getElementById('eigen').textContent = v.centrality;
+													}
+												});
+											});
+
+									}
+									else{
+										getData(time);
+									}
                 }
 							}
-            }
 			}
+		 }
 		 };
 		 
 			var series= [{
@@ -193,7 +245,7 @@
 				color: '#A6B0BD',
 				style: {
 								color: '#BFC7CF',
-								fontSize: "10px",
+								fontSize: "20px",
 								fontWeight: "light",
 								fontFamily: "Roboto"
 							},
@@ -217,8 +269,7 @@
 		 json.yAxis = yAxis;
 		 json.plotOptions = plotOptions;
 		 json.credits = credits;
-		 $('#left5').highcharts(json);
-
+		 $('#left2').highcharts(json);
 	    });
 		};
         gettotaldailyflow()				
@@ -236,8 +287,8 @@
 
 			// Task 4.1 - Edit this variable so that it points to our API Look at http://dev.spatialdatacapture.org:8870 for the values you need
 			//var url = "http://dev.spatialdatacapture.org:8870/data/"+lat+"/"+lng+"/500";
-			var url = "http://dev.spatialdatacapture.org:8876/data/centrality/"+time;
-			
+			//var url = "http://dev.spatialdatacapture.org:8876/data/centrality/"+time;
+			var url = "https://sgmrtanalysis.herokuapp.com/data/centrality/"+time;
 
 			$.getJSON( url , function( data ) {
 				
@@ -245,26 +296,52 @@
 					$.each(data,function(k,v){
 							 var latLng = new google.maps.LatLng(v.Latitude, v.Longitude);
 							 dataArray.push(latLng);
-							
-							 var marker = new google.maps.Marker({
-		     				  	position: latLng, 
-		     				  	customInfo: v.stations_ID,
-                                icon: {
+							 
+							 var icon1 = {
                                     path: google.maps.SymbolPath.CIRCLE,
 			                        scale: v.centrality*20+6,
+									//scale: 10,
                                     fillColor: '#c0cddd',
                                     fillOpacity: 0.9,
 			                        strokeWeight: 0
-                                 }								
+                                 }
+							 
+							 var icon2 = {
+                                    path: google.maps.SymbolPath.CIRCLE,
+			                        scale: v.centrality*20+6,
+									//scale: 10,
+                                    fillColor: '#5d7593',
+                                    fillOpacity: 0.9,
+			                        strokeWeight: 0
+                                 }
+								 
+							 var icon3 = {
+                                    path: google.maps.SymbolPath.CIRCLE,
+			                        scale: v.centrality*20+6,
+									//scale: 10,
+                                    fillColor: '#000000',
+                                    fillOpacity: 0.9,
+			                        strokeWeight: 0
+                                 }	 
+							 
+							 var marker = new google.maps.Marker({
+		     				  	position: latLng, 
+		     				  	customInfo: v.stations_ID,
+                                icon: icon1							
 		     				  });
                              
+							 
+							 
 							 google.maps.event.addListener(marker, 'click', function(content) {
 							 	return function(){
-								    document.getElementById('right1').textContent = v.stations_ID;
-									document.getElementById('right2').textContent = v.stations_name;
+								    marker.setIcon(icon3);
+								    document.getElementById("right").style.visibility="visible";
+								    document.getElementById('right1').textContent = v.stations_name;
+									//document.getElementById('right2').textContent = v.stations_ID;
+									selectedstation = v.stations_ID;
 									getcentralityflow(v.stations_ID);
 									getstationflow(v.stations_ID);
-									gettop5(20,v.stations_ID);
+									gettop5(selectedtime,v.stations_ID);
 									//map.panTo(new google.maps.LatLng(v.Latitude, v.Longitude));
 							 		//map.setCenter(new google.maps.LatLng(v.Latitude, v.Longitude));
 							 		/*$.getJSON("http://dev.spatialdatacapture.org:8870/data/photoDescription/"+this.customInfo, function( data ) {
@@ -272,7 +349,18 @@
 							 			var content = "<b>Photo ID: </b>"+v.pid+"<br/> <br/><b>Description:</b><br/> "+data[0].description.replaceAll("+", " ")+" <br/> <br/><b>Date Taken: </b> "+dateTaken+" <br/><b>Camera: </b> "+data[0].device.replaceAll("+", " ")+"<br/><b>Location:</b> "+ v.points.y + ", " + v.points.x +" <br/><br/> <b>Photo</b> <br/><br/> <img src='"+data[0].download_url+"' width='300px' alt='Description'>";
 							 	    	infowindow.setContent(content);
 							 	    });*/
-					
+									$.getJSON("https://sgmrtanalysis.herokuapp.com/data/stationDescription/"+v.stations_ID,function(data2) {
+										document.getElementById('code').textContent = data2[0].stations_ID;
+										document.getElementById('year').textContent = data2[0].stations_year;
+										document.getElementById('bet').textContent = data2[0].bwt;
+										if (v.centrality == data2[0].bwt){
+											document.getElementById('eigen').textContent = "NA";
+										}
+										else{
+											document.getElementById('eigen').textContent = v.centrality;
+										}
+										document.getElementById('right23').textContent = data2[0].stations_description;
+									})
 							 	}
 							 }(""));
 							 
@@ -280,21 +368,20 @@
 							 	return function(){
 							 		infowindow.setContent(v.stations_name);
 							 	    infowindow.open(map,this);
+									marker.setIcon(icon2); 
 							 	}
 							 }(""));
 							 
 							 google.maps.event.addListener(marker, 'mouseout', function(content) {
 							 	return function(){			
 							 	    infowindow.close(map,this);
+									marker.setIcon(icon1); 
 							 	}
 							 }(""));
 							 
-							 //google.maps.event.addListener(marker,'mouseover'){
 							 
-							 //}
-							 
-							map.data.addListener('mouseover', function(event) {
-							map.data.overrideStyle(event.feature, {icon: {
+							/*map.data.addListener('mouseover', function(event) {
+							  map.data.overrideStyle(event.feature, {icon: {
 								  path: google.maps.SymbolPath.CIRCLE,
 								  scale: 15,
 								  fillColor: '#7288A9',
@@ -303,7 +390,7 @@
 								  strokeOpacity: 0.8,
 								  strokeWeight: 2,
 								}});
-								});
+								});*/
 
 							 markerArray.push(marker);
 							 })
@@ -327,6 +414,27 @@
 
 	//  ******************* FUNCTIONS TO USE FOR THE MAP YOU DON"T NEED TO EDIT ANYTHING BELOW THIS LINE **************************************************
 
+    function hidebar(){
+		document.getElementById("right").style.visibility="hidden";
+	}
+
+	function onoff(){
+	    var checkBox = document.getElementById("myonoffswitch1");
+	    if (checkBox.checked == true){
+		    transitLayer.setMap(map);
+		} else {
+			transitLayer.setMap(null);
+		}
+	}
+
+	function onoff2(){
+	    var checkBox = document.getElementById("myonoffswitch2");
+	    if (checkBox.checked == true){
+		    getData("21");
+		} else {
+			getData("10");
+		}
+	}
 	
 	function createMarkers(){
 		var marker = new google.maps.Marker({
@@ -339,6 +447,18 @@
 			markerArray[i].setMap(map);
 		}
 	}
+	
+	$(document).ready(function(){
+	    var isHiden = true; /*控制切换菜单*/
+	    $('#left3').click(function(){
+	        if(isHiden){
+	            $('#left').animate({left:'+=52%'});//菜单块向右移动
+	        }else{
+	            $('#left').animate({left:'-=52%'}); //菜单块向左移动
+	        }
+	        isHiden = !isHiden;
+	    });
+	});
 	
 </script>
 </body>
