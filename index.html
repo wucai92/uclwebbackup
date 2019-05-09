@@ -27,7 +27,7 @@
 				<label class="onoffswitch1-label1" for="myonoffswitch1">
 					<span class="onoffswitch1-inner1"></span>
 					<span class="onoffswitch1-switch1"></span>
-				</label>			
+				</label>
 		    </div>
 			<div id='left14Q'>CENTRALITY</div>
 			<div id='left14' class="onoffswitch2">
@@ -80,16 +80,18 @@
 	var markerArray = [];
 	var dataArray = [];
 	var selectedstation;
+	var selectedmarker;
+	var iconstyle;
 	var selectedtime = '0';
 	var infowindow = new google.maps.InfoWindow({maxWidth: 300});
 	var transitLayer = new google.maps.TransitLayer();
-	
+
 	document.getElementById("right").style.visibility="hidden";
-	
+
 	//$(document).ready(function() {
 
 		function initialize() {
-			
+
 			// Task 3.4 - Make the map look pretty
 			var mapOptions = {
 				center: new google.maps.LatLng(1.3570, 103.8245),
@@ -100,59 +102,12 @@
 			};
 
 			getData("7");
-			
+
 			// Task 3.2 - Write the map into our DIV element
 			map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 			transitLayer.setMap(map);
-			
-			/*google.maps.event.addListener(map, 'dragend', function() {
-				//var bounds = map.getBounds();
-				//console.log("SW: " + bounds.getSouthWest() + " NE: " + bounds.getNorthEast());
-				//console.log("Center: " + map.getCenter().lat() + ", " +  map.getCenter().lng());
-				//getData(map.getCenter().lat(), map.getCenter().lng());
-			});*/
-			
-			
-            //map.data.loadGeoJson("https://api.myjson.com/bins/pax40")
-            //map.data.addGeoJson(points);
-			
-			/*map.data.setStyle({
-            icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-			  scale: 9,
-              fillColor: '#7288A9',
-              fillOpacity: 0.8,
-			  strokeColor: '#ffffff',
-			  strokeOpacity: 0.8,
-			  strokeWeight: 1,
-            }
-        });
-			
-			map.data.addListener('mouseover', function(event) {
-			//map.data.revertStyle();
-			document.getElementById('right1').textContent =
-            "ID:"+event.feature.getProperty('STN_NO');
-			map.data.overrideStyle(event.feature, {icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-			  scale: 15,
-              fillColor: '#7288A9',
-              fillOpacity: 0.8,
-			  strokeColor: '#ffffff',
-			  strokeOpacity: 0.8,
-			  strokeWeight: 2,
-            }});
-			});
-		
-		    map.data.addListener('click', function(event) {
-			document.getElementById('right2').textContent =
-            event.feature.getProperty('STN_NAME');
-            ;
-			});
-			
-			map.data.addListener('mouseout', function(event) {
-            map.data.revertStyle();
-            });*/
-			
+
+
     //chart1
 	function gettotaldailyflow() {
 				//var url = "http://dev.spatialdatacapture.org:8876/data/flow";
@@ -227,7 +182,6 @@
 													}
 												});
 											});
-
 									}
 									else{
 										getData(time);
@@ -242,7 +196,7 @@
 			}
 		 }
 		 };
-		 
+
 			var series= [{
 					showInLegend: false,
 					type: 'column',
@@ -277,10 +231,10 @@
 		 $('#left2').highcharts(json);
 	    });
 		};
-        gettotaldailyflow()				
-			
+        gettotaldailyflow()
+
 		}
-        
+
 
 
 		// Task 3.1 - Start the map using a function
@@ -291,7 +245,7 @@
 	//});
 
 		function getData(time){
-			//var lat = lat.toFixed(2); 
+			//var lat = lat.toFixed(2);
 			//var lng = lng.toFixed(3);
 
 			//console.log("Getting Data: " + lat + ", " + lng );
@@ -305,12 +259,12 @@
 			var url = "https://sgmrtanalysis.herokuapp.com/data/centrality/"+time;
 
 			$.getJSON( url , function( data ) {
-				
+
 				// Task 4.2 -- Add a loop  Make sure you end it as well.  -- Don't uncomment this line
 					$.each(data,function(k,v){
 							 var latLng = new google.maps.LatLng(v.Latitude, v.Longitude);
 							 dataArray.push(latLng);
-							 
+
 							 var icon1 = {
                                     path: google.maps.SymbolPath.CIRCLE,
 			                        scale: v.centrality*20+6,
@@ -319,7 +273,7 @@
                                     fillOpacity: 0.9,
 			                        strokeWeight: 0
                                  }
-							 
+
 							 var icon2 = {
                                     path: google.maps.SymbolPath.CIRCLE,
 			                        scale: v.centrality*20+6,
@@ -328,44 +282,55 @@
                                     fillOpacity: 0.9,
 			                        strokeWeight: 0
                                  }
-								 
+
 							 var icon3 = {
                                     path: google.maps.SymbolPath.CIRCLE,
-			                        scale: v.centrality*20+6,
+			                        scale: v.centrality*20+8,
 									//scale: 10,
-                                    fillColor: '#000000',
-                                    fillOpacity: 0.9,
-			                        strokeWeight: 0
-                                 }	 
-							 
+                                    fillColor: '#5d7593',
+                                    fillOpacity: 1,
+			                        strokeWeight: 3,
+															strokeColor: '#FFFFFF'
+                                 }
+
+							if (v.stations_ID == selectedstation){
+								var icon = icon3;
+							}
+							else{
+								var icon = icon1;
+							}
+
 							 var marker = new google.maps.Marker({
-		     				  	position: latLng, 
+		     				  	position: latLng,
 		     				  	customInfo: v.stations_ID,
-                                icon: icon1,
-								//animation: google.maps.Animation.DROP							
+                                icon: icon,
 		     				  });
-                             
-							 
-							 
+
+
+
 							 google.maps.event.addListener(marker, 'click', function(content) {
 							 	return function(){
-									marker.setAnimation(google.maps.Animation.BOUNCE);
-								    //marker.setIcon(icon3);
+
+									if (selectedmarker != null){
+											for (var i = 0; i < markerArray.length; i++) {
+											if(markerArray[i].customInfo == selectedstation){
+												selectedmarker = markerArray[i];
+												console.log('true');
+											}
+										}
+										selectedmarker.setIcon(iconstyle);
+									}
+								  marker.setIcon(icon3);
+									newicon1(v.centrality);
 									console.log(marker.position);
 								    document.getElementById("right").style.visibility="visible";
 								    document.getElementById('right1').textContent = v.stations_name;
-									//document.getElementById('right2').textContent = v.stations_ID;
 									selectedstation = v.stations_ID;
+									selectedmarker = marker;
 									getcentralityflow(v.stations_ID);
 									getstationflow(v.stations_ID);
 									gettop5(selectedtime,v.stations_ID);
-									//map.panTo(new google.maps.LatLng(v.Latitude, v.Longitude));
-							 		//map.setCenter(new google.maps.LatLng(v.Latitude, v.Longitude));
-							 		/*$.getJSON("http://dev.spatialdatacapture.org:8870/data/photoDescription/"+this.customInfo, function( data ) {
-							 			var dateTaken = new XDate((data[0].date_uploaded * 1000)).toString("MMM d, yyyy HH:mm:ss");
-							 			var content = "<b>Photo ID: </b>"+v.pid+"<br/> <br/><b>Description:</b><br/> "+data[0].description.replaceAll("+", " ")+" <br/> <br/><b>Date Taken: </b> "+dateTaken+" <br/><b>Camera: </b> "+data[0].device.replaceAll("+", " ")+"<br/><b>Location:</b> "+ v.points.y + ", " + v.points.x +" <br/><br/> <b>Photo</b> <br/><br/> <img src='"+data[0].download_url+"' width='300px' alt='Description'>";
-							 	    	infowindow.setContent(content);
-							 	    });*/
+									//a = 0;
 									$.getJSON("https://sgmrtanalysis.herokuapp.com/data/stationDescription/"+v.stations_ID,function(data2) {
 										document.getElementById('code').textContent = data2[0].stations_ID;
 										document.getElementById('year').textContent = data2[0].stations_year;
@@ -380,23 +345,32 @@
 									})
 							 	}
 							 }(""));
-							 
+
 							 google.maps.event.addListener(marker, 'mouseover', function(content) {
 							 	return function(){
 							 		infowindow.setContent(v.stations_name);
 							 	    infowindow.open(map,this);
-									marker.setIcon(icon2); 
+										if (v.stations_ID != selectedstation) {
+												marker.setIcon(icon2);
+										}
 							 	}
 							 }(""));
-							 
+
 							 google.maps.event.addListener(marker, 'mouseout', function(content) {
-							 	return function(){			
+							 	return function(){
 							 	    infowindow.close(map,this);
-									marker.setIcon(icon1); 
+										if (selectedstation != null) {
+						            if (v.stations_ID != selectedstation) {
+						                marker.setIcon(icon1);
+						            }
+						        }
+										else{
+											marker.setIcon(icon1);
+										}
 							 	}
 							 }(""));
-							 
-							 
+
+
 							/*map.data.addListener('mouseover', function(event) {
 							  map.data.overrideStyle(event.feature, {icon: {
 								  path: google.maps.SymbolPath.CIRCLE,
@@ -411,13 +385,13 @@
 
 							 markerArray.push(marker);
 							 })
-							 
+
 
 				// -----------------------------------
 
 
 				// Task 4.3 -- Write the number of rows returned into a element.
-      			
+
       			setAllMap(map);
 			});
 		}
@@ -443,10 +417,10 @@
 			getData("6");
 		}
 	}
-	
+
 	function createMarkers(){
 		var marker = new google.maps.Marker({
-  			position: latLng 				
+  			position: latLng
   		});
 	}
 
@@ -455,7 +429,17 @@
 			markerArray[i].setMap(map);
 		}
 	}
-	
+
+	function newicon1(v){ iconstyle = {
+											 path: google.maps.SymbolPath.CIRCLE,
+											 scale: v*20+6,
+											 fillColor: '#c0cddd',
+											 fillOpacity: 0.9,
+								 strokeWeight: 0
+										}
+
+	}
+
 	$(document).ready(function(){
 	    var isHiden = true; //控制切换菜单
 	    $('#left3').click(function(){
@@ -467,7 +451,7 @@
 	        isHiden = !isHiden;
 	    });
 	});
-	
+
 </script>
 </body>
 </html>
