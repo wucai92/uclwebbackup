@@ -265,15 +265,15 @@ invalue_m.reverse();
 outvalue.reverse();
 inname.reverse();
 outname.reverse();
-var categories = inname;
-var categories2 = outname;
+var value = invalue_m.concat(outvalue);
+var name = inname.concat(outname);
 var chart = Highcharts.chart('right5', {
 chart: {
   type: 'bar',
   backgroundColor:false
 },
 title: {
-  text: 'Top 5 High Degree Centrality',
+  text: 'Top Five Origin & Destination',
   y:20,
     style: {
             color: '#BFC7CF',
@@ -283,7 +283,7 @@ title: {
           }
 },
 xAxis: [{
-  categories: categories,
+  categories: ['5th','4th','3rd','2nd','1st'],
   reversed: false,
   lineWidth: 0,
    minorGridLineWidth: 0,
@@ -305,7 +305,6 @@ xAxis: [{
   // 显示在右侧的镜像 xAxis （通过 linkedTo 与第一个 xAxis 关联）
   opposite: true,
   reversed: false,
-  categories: categories2,
   linkedTo: 0,
   lineWidth: 0,
    minorGridLineWidth: 0,
@@ -352,7 +351,7 @@ enabled: false
 
 tooltip: {
   formatter: function () {
-    return '<b>' + this.series.name + ', station ' + this.point.category + '</b><br/>' +
+    return '<b>' +this.point.category +' '+ this.series.name +': '+ name[value.indexOf(this.point.y)] + '</b><br/>' +
       'Flow: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
   }
 },
@@ -379,4 +378,3 @@ borderRadiusBottomRight: 50,
 });
 };
 //gettop5(20,'BP1')
-
