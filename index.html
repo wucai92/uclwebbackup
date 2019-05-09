@@ -27,16 +27,16 @@
 				<label class="onoffswitch1-label1" for="myonoffswitch1">
 					<span class="onoffswitch1-inner1"></span>
 					<span class="onoffswitch1-switch1"></span>
-				</label>
-				<div id='left14Q'>CENTRALITY</div>
+				</label>			
 		    </div>
-				<div id='left14' class="onoffswitch2">
-					<input type="checkbox" name="onoffswitch1" class="onoffswitch2-checkbox2" id="myonoffswitch2" onclick = 'onoff2()' checked>
-					<label class="onoffswitch2-label2" for="myonoffswitch2">
-						<span class="onoffswitch2-inner2"></span>
-						<span class="onoffswitch2-switch2"></span>
-					</label>
-				</div>
+			<div id='left14Q'>CENTRALITY</div>
+			<div id='left14' class="onoffswitch2">
+				<input type="checkbox" name="onoffswitch1" class="onoffswitch2-checkbox2" id="myonoffswitch2" onclick = 'onoff2()' checked>
+				<label class="onoffswitch2-label2" for="myonoffswitch2">
+					<span class="onoffswitch2-inner2"></span>
+					<span class="onoffswitch2-switch2"></span>
+				</label>
+			</div>
 		 </div>
 		 <div id='left2'></div>
 		 <div id='left3'></div>
@@ -46,15 +46,15 @@
 		<div id='right1'></div>
 		<div id='right2'>
 			<div id='right21'>
-				<div id='codename'>ID</div>
+				<div id='codename'>STATION CODE</div>
 				<div id='code'></div>
-				<div id='betname'>bet</div>
+				<div id='betname'>BRTWEENNESS CENTRALITY</div>
 				<div id='bet'></div>
 			</div>
 			<div id='right22'>
-				<div id='yearname'>year</div>
+				<div id='yearname'>STATION HISTORY</div>
 				<div id='year'></div>
-				<div id='eigenname'>eigen</div>
+				<div id='eigenname'>EIGENVECTOR CENTRALITY</div>
 				<div id='eigen'></div>
 			</div>
 			<div id='right23'></div>
@@ -86,7 +86,7 @@
 	
 	document.getElementById("right").style.visibility="hidden";
 	
-	$(document).ready(function() {
+	//$(document).ready(function() {
 
 		function initialize() {
 			
@@ -111,7 +111,6 @@
 				//console.log("Center: " + map.getCenter().lat() + ", " +  map.getCenter().lng());
 				//getData(map.getCenter().lat(), map.getCenter().lng());
 			});*/
-			
 			
 			
             //map.data.loadGeoJson("https://api.myjson.com/bins/pax40")
@@ -176,7 +175,7 @@
 			var title = {
 				text: 'Total Flow',
 				style: {
-			color: '#BFC7CF',
+			color: '#DDE3E9',
 				fontSize: "12px",
 				fontWeight: "light",
 				fontFamily: "Roboto"
@@ -187,7 +186,7 @@
 			labels: {
 			rotation: 0,
 					style: {
-						 color: '#BFC7CF',
+						 color: '#DDE3E9',
 							 fontSize: "8px",
 							 fontWeight: "light",
 							 fontFamily: "Roboto"
@@ -202,7 +201,7 @@
 
 		labels: {
 					style: {
-						 color: '#BFC7CF',
+						 color: '#DDE3E9',
 							 fontSize: "8px",
 							 fontWeight: "light",
 							 fontFamily: "Roboto"
@@ -220,6 +219,7 @@
 									if (selectedstation != ''){
 										gettop5(time,selectedstation);
 										getData(time);
+										$('.onoffswitch2-checkbox2')[0].checked = false;
 											$.getJSON( "https://sgmrtanalysis.herokuapp.com/data/centrality/"+ selectedtime , function( data ) {
 												$.each(data,function(k,v){
 													if(v.stations_ID == selectedstation){
@@ -231,7 +231,12 @@
 									}
 									else{
 										getData(time);
+										$('.onoffswitch2-checkbox2')[0].checked = false;
 									}
+									for (var i = 0; i < this.series.data.length; i++) {
+                                this.series.data[i].update({ color: '#A6B0BD' }, true, false);
+                            }
+                            this.update({ color: '#f00' }, true, false);
                 }
 							}
 			}
@@ -244,15 +249,15 @@
 							name: 'Flow',
 				color: '#A6B0BD',
 				style: {
-								color: '#BFC7CF',
+								color: '#DDE3E9',
 								fontSize: "20px",
 								fontWeight: "light",
 								fontFamily: "Roboto"
 							},
 				shadow: {
 				color: '#000000',
-				opacity: 0.4,
-				width: 2,
+				opacity: 0.3,
+				width: 3,
 				offsetX: 1,
 				offsetY: 3,
 				blur:6
@@ -276,6 +281,15 @@
 			
 		}
         
+
+
+		// Task 3.1 - Start the map using a function
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+		// Task 6 --  Make the markers display on map load.
+
+	//});
+
 		function getData(time){
 			//var lat = lat.toFixed(2); 
 			//var lng = lng.toFixed(3);
@@ -327,14 +341,17 @@
 							 var marker = new google.maps.Marker({
 		     				  	position: latLng, 
 		     				  	customInfo: v.stations_ID,
-                                icon: icon1							
+                                icon: icon1,
+								//animation: google.maps.Animation.DROP							
 		     				  });
                              
 							 
 							 
 							 google.maps.event.addListener(marker, 'click', function(content) {
 							 	return function(){
-								    marker.setIcon(icon3);
+									marker.setAnimation(google.maps.Animation.BOUNCE);
+								    //marker.setIcon(icon3);
+									console.log(marker.position);
 								    document.getElementById("right").style.visibility="visible";
 								    document.getElementById('right1').textContent = v.stations_name;
 									//document.getElementById('right2').textContent = v.stations_ID;
@@ -405,15 +422,6 @@
 			});
 		}
 
-		// Task 3.1 - Start the map using a function
-		google.maps.event.addDomListener(window, 'load', initialize);
-
-		// Task 6 --  Make the markers display on map load.
-
-	});
-
-	//  ******************* FUNCTIONS TO USE FOR THE MAP YOU DON"T NEED TO EDIT ANYTHING BELOW THIS LINE **************************************************
-
     function hidebar(){
 		document.getElementById("right").style.visibility="hidden";
 	}
@@ -432,7 +440,7 @@
 	    if (checkBox.checked == true){
 		    getData("21");
 		} else {
-			getData("10");
+			getData("6");
 		}
 	}
 	
@@ -449,12 +457,12 @@
 	}
 	
 	$(document).ready(function(){
-	    var isHiden = true; /*控制切换菜单*/
+	    var isHiden = true; //控制切换菜单
 	    $('#left3').click(function(){
 	        if(isHiden){
-	            $('#left').animate({left:'+=52%'});//菜单块向右移动
+	            $('#left').animate({left:'+=55%'});//菜单块向右移动
 	        }else{
-	            $('#left').animate({left:'-=52%'}); //菜单块向左移动
+	            $('#left').animate({left:'-=55%'}); //菜单块向左移动
 	        }
 	        isHiden = !isHiden;
 	    });
