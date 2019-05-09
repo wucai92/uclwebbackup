@@ -11,10 +11,12 @@
 <body>
 <div id='wrapper'>
      <div id='header'>
-	 <img src="img/logo.png" alt="logo" width="30" height="30">
+	 <div id='logo'>
+		<img src="img/logo.png" alt="logo" width="30" height="30">
+	 </div>
 	 <div id='header1'>Singarpore Public Transport</div>
-	 <div id='a1'><a href="https://www.w3schools.com/html/" target="_blank">About</a></div>
-	 <div id='a2'><a href="https://developers.google.com/maps/documentation/javascript/tutorial" target="_blank">Analysis</a></div>
+	 <div id='a1'><a href="https://www.w3schools.com/html/" target="_blank">ABOUT</a></div>
+	 <div id='a2'><a href="https://developers.google.com/maps/documentation/javascript/tutorial" target="_blank">ANALYSIS</a></div>
 	 </div>
      <div id='map-canvas'></div>
 	 <div id='left'>
@@ -27,7 +29,7 @@
 				<label class="onoffswitch1-label1" for="myonoffswitch1">
 					<span class="onoffswitch1-inner1"></span>
 					<span class="onoffswitch1-switch1"></span>
-				</label>
+				</label>			
 		    </div>
 			<div id='left14Q'>CENTRALITY</div>
 			<div id='left14' class="onoffswitch2">
@@ -39,10 +41,16 @@
 			</div>
 		 </div>
 		 <div id='left2'></div>
-		 <div id='left3'></div>
+		 <div id='left3'>
+			 <div id='switch'>
+				<img id="lr" src="img/right.png" alt="right" width="7" height="13">
+			 </div>
+		 </div>
 	</div>
 	<div id='right'>
-	    <img src="img/close.png" alt="close" width="15" height="15" onclick="hidebar()">
+		<div id="close">
+			<img src="img/close.png" alt="close" width="15" height="15" onclick="hidebar()">
+		</div>
 		<div id='right1'></div>
 		<div id='right2'>
 			<div id='right21'>
@@ -80,18 +88,18 @@
 	var markerArray = [];
 	var dataArray = [];
 	var selectedstation;
+	var selectedtime = '0';
 	var selectedmarker;
 	var iconstyle;
-	var selectedtime = '0';
 	var infowindow = new google.maps.InfoWindow({maxWidth: 300});
 	var transitLayer = new google.maps.TransitLayer();
-
+	
 	document.getElementById("right").style.visibility="hidden";
-
-	//$(document).ready(function() {
+	
+	$(document).ready(function() {
 
 		function initialize() {
-
+			
 			// Task 3.4 - Make the map look pretty
 			var mapOptions = {
 				center: new google.maps.LatLng(1.3570, 103.8245),
@@ -102,12 +110,59 @@
 			};
 
 			getData("7");
-
+			
 			// Task 3.2 - Write the map into our DIV element
 			map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 			transitLayer.setMap(map);
-
-
+			
+			/*google.maps.event.addListener(map, 'dragend', function() {
+				//var bounds = map.getBounds();
+				//console.log("SW: " + bounds.getSouthWest() + " NE: " + bounds.getNorthEast());
+				//console.log("Center: " + map.getCenter().lat() + ", " +  map.getCenter().lng());
+				//getData(map.getCenter().lat(), map.getCenter().lng());
+			});*/
+			
+			
+            //map.data.loadGeoJson("https://api.myjson.com/bins/pax40")
+            //map.data.addGeoJson(points);
+			
+			/*map.data.setStyle({
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+			  scale: 9,
+              fillColor: '#7288A9',
+              fillOpacity: 0.8,
+			  strokeColor: '#ffffff',
+			  strokeOpacity: 0.8,
+			  strokeWeight: 1,
+            }
+        });
+			
+			map.data.addListener('mouseover', function(event) {
+			//map.data.revertStyle();
+			document.getElementById('right1').textContent =
+            "ID:"+event.feature.getProperty('STN_NO');
+			map.data.overrideStyle(event.feature, {icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+			  scale: 15,
+              fillColor: '#7288A9',
+              fillOpacity: 0.8,
+			  strokeColor: '#ffffff',
+			  strokeOpacity: 0.8,
+			  strokeWeight: 2,
+            }});
+			});
+		
+		    map.data.addListener('click', function(event) {
+			document.getElementById('right2').textContent =
+            event.feature.getProperty('STN_NAME');
+            ;
+			});
+			
+			map.data.addListener('mouseout', function(event) {
+            map.data.revertStyle();
+            });*/
+			
     //chart1
 	function gettotaldailyflow() {
 				//var url = "http://dev.spatialdatacapture.org:8876/data/flow";
@@ -182,6 +237,7 @@
 													}
 												});
 											});
+
 									}
 									else{
 										getData(time);
@@ -190,13 +246,25 @@
 									for (var i = 0; i < this.series.data.length; i++) {
                                 this.series.data[i].update({ color: '#A6B0BD' }, true, false);
                             }
-                            this.update({ color: '#f00' }, true, false);
+                            this.update({ color: '#666666' }, true, false);
+							var checkbox = document.getElementById('myonoffswitch2');
+									checkbox.addEventListener('change', e => {
+
+									    if(e.target.checked){
+												for (var i = 0; i < this.series.data.length; i++) {
+													this.series.data[i].update({ color: '#A6B0BD' }, true, false);
+												}
+									    }else{
+												this.series.data[0].update({ color: '#666666' }, true, false);
+											}
+
+									});
                 }
 							}
 			}
 		 }
 		 };
-
+		 
 			var series= [{
 					showInLegend: false,
 					type: 'column',
@@ -231,10 +299,10 @@
 		 $('#left2').highcharts(json);
 	    });
 		};
-        gettotaldailyflow()
-
+        gettotaldailyflow()				
+			
 		}
-
+        
 
 
 		// Task 3.1 - Start the map using a function
@@ -242,10 +310,10 @@
 
 		// Task 6 --  Make the markers display on map load.
 
-	//});
+	});
 
 		function getData(time){
-			//var lat = lat.toFixed(2);
+			//var lat = lat.toFixed(2); 
 			//var lng = lng.toFixed(3);
 
 			//console.log("Getting Data: " + lat + ", " + lng );
@@ -259,12 +327,12 @@
 			var url = "https://sgmrtanalysis.herokuapp.com/data/centrality/"+time;
 
 			$.getJSON( url , function( data ) {
-
+				
 				// Task 4.2 -- Add a loop  Make sure you end it as well.  -- Don't uncomment this line
 					$.each(data,function(k,v){
 							 var latLng = new google.maps.LatLng(v.Latitude, v.Longitude);
 							 dataArray.push(latLng);
-
+							 
 							 var icon1 = {
                                     path: google.maps.SymbolPath.CIRCLE,
 			                        scale: v.centrality*20+6,
@@ -273,7 +341,7 @@
                                     fillOpacity: 0.9,
 			                        strokeWeight: 0
                                  }
-
+							 
 							 var icon2 = {
                                     path: google.maps.SymbolPath.CIRCLE,
 			                        scale: v.centrality*20+6,
@@ -282,35 +350,35 @@
                                     fillOpacity: 0.9,
 			                        strokeWeight: 0
                                  }
-
+								 
 							 var icon3 = {
                                     path: google.maps.SymbolPath.CIRCLE,
-			                        scale: v.centrality*20+8,
+			                        scale: v.centrality*20+6,
 									//scale: 10,
                                     fillColor: '#5d7593',
                                     fillOpacity: 1,
-			                        strokeWeight: 3,
-															strokeColor: '#FFFFFF'
-                                 }
-
-							if (v.stations_ID == selectedstation){
+			                        strokeWeight: 2,
+									strokeColor: "#ffffff"
+                                 }	 
+								 
+							 if (v.stations_ID == selectedstation){
 								var icon = icon3;
-							}
-							else{
+							 }
+							 else{
 								var icon = icon1;
-							}
-
+							 }
+							 
 							 var marker = new google.maps.Marker({
-		     				  	position: latLng,
+		     				  	position: latLng, 
 		     				  	customInfo: v.stations_ID,
                                 icon: icon,
+								//animation: google.maps.Animation.DROP							
 		     				  });
-
-
-
+                             
+							 
+							 
 							 google.maps.event.addListener(marker, 'click', function(content) {
-							 	return function(){
-
+									return function(){
 									if (selectedmarker != null){
 											for (var i = 0; i < markerArray.length; i++) {
 											if(markerArray[i].customInfo == selectedstation){
@@ -320,17 +388,17 @@
 										}
 										selectedmarker.setIcon(iconstyle);
 									}
-								  marker.setIcon(icon3);
+									marker.setIcon(icon3);
 									newicon1(v.centrality);
-									console.log(marker.position);
+									//marker.setAnimation(google.maps.Animation.BOUNCE);
 								    document.getElementById("right").style.visibility="visible";
 								    document.getElementById('right1').textContent = v.stations_name;
-									selectedstation = v.stations_ID;
+									//document.getElementById('right2').textContent = v.stations_ID;
 									selectedmarker = marker;
+									selectedstation = v.stations_ID;
 									getcentralityflow(v.stations_ID);
 									getstationflow(v.stations_ID);
 									gettop5(selectedtime,v.stations_ID);
-									//a = 0;
 									$.getJSON("https://sgmrtanalysis.herokuapp.com/data/stationDescription/"+v.stations_ID,function(data2) {
 										document.getElementById('code').textContent = data2[0].stations_ID;
 										document.getElementById('year').textContent = data2[0].stations_year;
@@ -345,7 +413,7 @@
 									})
 							 	}
 							 }(""));
-
+							 
 							 google.maps.event.addListener(marker, 'mouseover', function(content) {
 							 	return function(){
 							 		infowindow.setContent(v.stations_name);
@@ -355,7 +423,7 @@
 										}
 							 	}
 							 }(""));
-
+							 
 							 google.maps.event.addListener(marker, 'mouseout', function(content) {
 							 	return function(){
 							 	    infowindow.close(map,this);
@@ -369,8 +437,8 @@
 										}
 							 	}
 							 }(""));
-
-
+							 
+							 
 							/*map.data.addListener('mouseover', function(event) {
 							  map.data.overrideStyle(event.feature, {icon: {
 								  path: google.maps.SymbolPath.CIRCLE,
@@ -385,19 +453,20 @@
 
 							 markerArray.push(marker);
 							 })
-
+							 
 
 				// -----------------------------------
 
 
 				// Task 4.3 -- Write the number of rows returned into a element.
-
+      			
       			setAllMap(map);
 			});
 		}
 
     function hidebar(){
 		document.getElementById("right").style.visibility="hidden";
+		selectedstation=null;
 	}
 
 	function onoff(){
@@ -414,22 +483,26 @@
 	    if (checkBox.checked == true){
 		    getData("21");
 		} else {
-			getData("6");
+			selectedtime = String(6);
+			if (selectedstation != ''){
+				gettop5(selectedtime,selectedstation);
+				getData(selectedtime);
+				$('.onoffswitch2-checkbox2')[0].checked = false;
+					$.getJSON( "https://sgmrtanalysis.herokuapp.com/data/centrality/"+ selectedtime , function( data ) {
+						$.each(data,function(k,v){
+							if(v.stations_ID == selectedstation){
+								document.getElementById('eigen').textContent = v.centrality;
+							}
+						});
+					});
+
+			}
+			else{
+				getData(selectedtime);
+			}
 		}
 	}
-
-	function createMarkers(){
-		var marker = new google.maps.Marker({
-  			position: latLng
-  		});
-	}
-
-	function setAllMap(map) {
-		for (var i = 0; i < markerArray.length; i++) {
-			markerArray[i].setMap(map);
-		}
-	}
-
+	
 	function newicon1(v){ iconstyle = {
 											 path: google.maps.SymbolPath.CIRCLE,
 											 scale: v*20+6,
@@ -439,19 +512,32 @@
 										}
 
 	}
+	
+	function createMarkers(){
+		var marker = new google.maps.Marker({
+  			position: latLng 				
+  		});
+	}
 
-	$(document).ready(function(){
-	    var isHiden = true; //控制切换菜单
-	    $('#left3').click(function(){
-	        if(isHiden){
-	            $('#left').animate({left:'+=55%'});//菜单块向右移动
-	        }else{
-	            $('#left').animate({left:'-=55%'}); //菜单块向左移动
-	        }
-	        isHiden = !isHiden;
-	    });
+	function setAllMap(map) {
+		for (var i = 0; i < markerArray.length; i++) {
+			markerArray[i].setMap(map);
+		}
+	}
+	
+	var isHiden = true; //控制切换菜单
+	$('#left3').click(function(){
+		var lr = document.getElementById("lr");
+	    if(isHiden){
+	        $('#left').animate({left:'+=55%'});//菜单块向右移动
+			lr.setAttribute("src","img/left.png");
+	    }else{
+	        $('#left').animate({left:'-=55%'}); //菜单块向左移动
+			lr.setAttribute("src","img/right.png");
+	    }
+	    isHiden = !isHiden;
 	});
-
+	
 </script>
 </body>
 </html>
