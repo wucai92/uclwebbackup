@@ -12,19 +12,25 @@ html, body, #wrapper{
 	top:0px;
 	background-color: rgba(208,215,225,0);
 	z-index:1;
-	font-size:30px;
+	font-size:25px;
 	font-family: 'Roboto';
 	color: #ffffff;
+}
+
+#logo{
+	position: absolute;
+	left:1%;
+	top:10px;
 }
 
 #header1{
 	position: absolute;
     height: 50px;
     width: 50%;
-	left:0px;
-	top:0px;
-	background-color: rgba(208,215,225,0);
+	left:4%;
+	top:10px;
 	z-index:1;
+	font-weight:bold;
 }
 
 #a1{
@@ -49,12 +55,6 @@ a:link {color:#FFFFFF;}
 a:visited {color:#FFFF88;} 
 a:hover {color:#CCFFFF;}
 
-img {
-	position: absolute;
-	right:0px;
-	z-index: 2;
-	margin:5px;
-} 
 
 #left{
 	position: absolute;
@@ -70,6 +70,7 @@ img {
 	color: #DDE3E9;
 	border-radius: 10px;
 }
+
 
 #left1{
 	position: absolute;
@@ -156,6 +157,13 @@ img {
 	border-bottom-right-radius: 10px;
 }
 
+#switch{
+	position: absolute;
+    width: 100%;
+	top:45%;
+	z-index:2;
+}
+
 #right{
 	position: absolute;
     height: 670px;
@@ -169,6 +177,12 @@ img {
 	color: #ffffff;
 	border-radius: 10px;
 }
+
+#close{
+	position: absolute;
+	top:5px;
+	right:5px;
+} 
 
 #right1{
 	position: absolute;
@@ -358,9 +372,6 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
 .onoffswitch1-checkbox1:checked + .onoffswitch1-label1 .onoffswitch1-switch1 {
     right: 0px;
 }
-
-
-
 
 .onoffswitch2 {
 position: absolute; width: 120%;
