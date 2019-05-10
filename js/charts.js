@@ -14,12 +14,13 @@ function getstationflow(stations_ID){
       var chart = {
          backgroundColor:false,
       opacity: 0.9,
-         type: 'line'
+         type: 'line',
+         height: 150
       };
 
       var tooltip = {
 	   formatter:function(){
-	   return '<b>'+'centrality:'+this.y+'</b>';
+	   return '<b>'+this.series.name + ': '+this.y+'</b>';
 	   }
    };
 
@@ -34,37 +35,39 @@ function getstationflow(stations_ID){
       };
 
       var title = {
-       text: 'Flow',
+       text: 'INBOUND & OUTBOUNT FLOW',
+       y:17,
        style: {
-               color: '#BFC7CF',
+               color: '#DDE3E9',
                fontSize: "12px",
                fontWeight: "light",
                fontFamily: "Roboto"
              }
       };
       var xAxis = {
+		  lineWidth: 0,
        categories: ['6:00','','','9:00','','','12:00','','','15:00','','','18:00','','','21:00'],
       labels:{
         step:1,
            rotation: 0,
            overflow: 'justify',
            style: {
-               color: '#BFC7CF',
+               color: '#ADB7C2',
                fontSize: "8px",
                fontWeight: "light",
                fontFamily: "Roboto",
              }
-
       }
       };
       var yAxis = {
       title: false,
+	  gridLineColor: '#DDE3E9',
           min: 0,
             //max: 300000,
             //tickInterval: 50000,
       labels:{
        style: {
-               color: '#BFC7CF',
+               color: '#DDE3E9',
                fontSize: "8px",
                fontWeight: "light",
                fontFamily: "Roboto"
@@ -75,18 +78,18 @@ function getstationflow(stations_ID){
        {
           name: 'in',
       showInLegend: false,
-      color: '#5390DB',
+      color: '#9CBADF',
           lineWidth: 3,
           style: {
-               color: '#BFC7CF',
+               color: '#DDE3E9',
                fontSize: "10px",
                fontWeight: "light",
                fontFamily: "Roboto"
              },
        shadow: {
        color: '#000000',
-       opacity: 0.4,
-       width: 2,
+       opacity: 0.2,
+       width: 3,
        offsetX: 1,
        offsetY: 3,
        blur:6
@@ -96,18 +99,18 @@ function getstationflow(stations_ID){
        {
           name: 'out',
       showInLegend: false,
-      color: '#947070',
+      color: '#DB9996',
           lineWidth: 3,
           style: {
-               color: '#BFC7CF',
+               color: '#DDE3E9',
                fontSize: "10px",
                fontWeight: "light",
                fontFamily: "Roboto"
              },
        shadow: {
        color: '#000000',
-       opacity: 0.4,
-       width: 2,
+       opacity: 0.2,
+       width: 3,
        offsetX: 1,
        offsetY: 3,
        blur:6
@@ -135,7 +138,7 @@ function getstationflow(stations_ID){
 		function getcentralityflow(stations_ID) {
 			var url = "https://sgmrtanalysis.herokuapp.com/data/cen/"+stations_ID;
 			$.getJSON( url , function( data ) {
-				console.log(data[0]);
+				//console.log(data[0]);
 				var flowdata = Object.values(data[0]);
 		var credits = {
   enabled: false
@@ -144,12 +147,14 @@ function getstationflow(stations_ID){
    var chart = {
         backgroundColor:false,
 		opacity: 0.9,
-        type: 'line'
+        type: 'line',
+        height: 150
+        //height: (9 / 16 * 100) + '%'
     };
 
 	var tooltip = {
 	   formatter:function(){
-	   return '<b>'+'centrality:'+this.y+'</b>';
+	   return '<b>'+'centrality: '+this.y+'</b>';
 	   }
    };
 
@@ -164,20 +169,23 @@ function getstationflow(stations_ID){
 };
 
    var title = {
-      text: 'Centrality',
+      text: 'EIGENVECTOR CENTRALITY',
+      y:17,
       style: {
-              color: '#BFC7CF',
+              color: '#DDE3E9',
               fontSize: "12px",
               fontWeight: "light",
               fontFamily: "Roboto"
             }
    };
    var xAxis = {
-      categories: ['6','','','9','','','12','','','15','','','18','','','21'],
+	   lineWidth: 0,
+      categories: ['6:00','','','9:00','','','12:00','','','15:00','','','18:00','','','21:00'],
 	  labels:{
 	        rotation: 0,
+          step:1,
 	        style: {
-              color: '#BFC7CF',
+              color: '#DDE3E9',
               fontSize: "8px",
               fontWeight: "light",
               fontFamily: "Roboto"
@@ -186,12 +194,13 @@ function getstationflow(stations_ID){
    };
    var yAxis = {
     title: false,
+	gridLineColor: '#ADB7C2',
 	       min: 0,
            //max: 1,
            //tickInterval: 0.25,
 	labels:{
 	    style: {
-              color: '#BFC7CF',
+              color: '#DDE3E9',
               fontSize: "8px",
               fontWeight: "light",
               fontFamily: "Roboto"
@@ -202,7 +211,7 @@ function getstationflow(stations_ID){
       {
          name: 'Centrality',
 		 showInLegend: false,
-		 color: '#5390DB',
+		 color: '#9CBADF',
          lineWidth: 3,
          style: {
               color: '#BFC7CF',
@@ -212,8 +221,8 @@ function getstationflow(stations_ID){
             },
 			shadow: {
 			color: '#000000',
-			opacity: 0.4,
-			width: 2,
+			opacity: 0.2,
+			width: 3,
 			offsetX: 1,
 			offsetY: 3,
 			blur:6
@@ -238,7 +247,7 @@ function getstationflow(stations_ID){
 
 
 
-	//chart4
+//chart4
 function gettop5(time,stations_ID){
 var url = "https://sgmrtanalysis.herokuapp.com/data/intop/" + time + "/" + stations_ID;
 var url2 = "https://sgmrtanalysis.herokuapp.com/data/outtop/" + time + "/" + stations_ID;
@@ -276,11 +285,11 @@ chart: {
   backgroundColor:false
 },
 title: {
-  text: 'Top Five Origin & Destination',
+  text: 'TOP 5 ORIGIN & DESTINATION',
   y:20,
     style: {
-            color: '#BFC7CF',
-            fontSize: "12px",
+            color: '#DDE3E9',
+            fontSize: "13px",
             fontWeight: "light",
             fontFamily: "Roboto"
           }
@@ -361,18 +370,33 @@ tooltip: {
 
 series: [{
   name: 'In Flow',
-    color: '#5390DB',
+    color: '#9CBADF',
           showInLegend: false,
 borderRadiusBottomLeft: 50,
 borderRadiusBottomRight: 50,
-
+shadow: {
+       color: '#000000',
+       opacity: 0.2,
+       width: 3,
+       offsetX: 1,
+       offsetY: 3,
+       blur:6
+      },
   data: invalue_m,
 
 }, {
   name: 'Out Flow',
-    color: '#947070',
+    color: '#DB9996',
     borderRadiusTopLeft: 50,
     borderRadiusTopRight: 50,
+	shadow: {
+       color: '#000000',
+       opacity: 0.2,
+       width: 3,
+       offsetX: 1,
+       offsetY: 3,
+       blur:6
+      },
     showInLegend: false,
   data: outvalue
 }]

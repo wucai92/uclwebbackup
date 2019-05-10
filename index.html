@@ -2,6 +2,7 @@
 <head>
 	<title>Singarpore Underground</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="icon" href="img/logo.png" type="image/x-icon"/>
 	<link rel='stylesheet' id='font-css'  href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' type='text/css' media='all' />
 	<link rel='stylesheet' href='./css/style.css' type='text/css'/>
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -12,17 +13,17 @@
 <div id='wrapper'>
      <div id='header'>
 	 <div id='logo'>
-		<img src="img/logo.png" alt="logo" width="30" height="30">
+		<img src="img/logo2.png" alt="logo" width="30" height="30">
 	 </div>
 	 <div id='header1'>Singarpore Public Transport</div>
-	 <div id='a1'><a href="https://www.w3schools.com/html/" target="_blank">ABOUT</a></div>
-	 <div id='a2'><a href="https://developers.google.com/maps/documentation/javascript/tutorial" target="_blank">ANALYSIS</a></div>
+	 <div id='a1'><a href="https://www.w3schools.com/html/" target="_blank">Analysis</a></div>
+	 <div id='a2'><a href="about.html" target="_blank">About</a></div>
 	 </div>
      <div id='map-canvas'></div>
 	 <div id='left'>
 		 <div id='left1'>
 			<div id='left11'>TRAIN FLOWS</div>
-			<div id='left12'>Janurary 1st</div>
+			<div id='left12'>Showing results for Singarpore MRT system from <b>6:00</b> to <b>21:00</b> on weekday of Jan 2019</div>
 			<div id="left13Q">TRAIN LINE</div>
 			<div id='left13' class="onoffswitch1">
 				<input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox1" id="myonoffswitch1" onclick = 'onoff()' checked>
@@ -136,16 +137,17 @@
 
 
 			var title = {
-				text: 'Total Flow',
+				text: 'TOTAL FLOW',
+				y: 16,
 				style: {
 			color: '#DDE3E9',
-				fontSize: "12px",
-				fontWeight: "light",
-				fontFamily: "Roboto"
+			fontSize: "12px",
+			fontWeight: "light",
+			fontFamily: "Roboto"
 			}
 		 };
 			var xAxis = {
-				categories: ['6AM','7AM','8AM','9AM','10AM','11AM','12AM','1PM','2PM','3PM','4PM','5PM','6PM','7PM','8PM','9PM'],
+				categories: ['6:00','7:00','8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'],
 			labels: {
 			rotation: 0,
 					style: {
@@ -179,6 +181,7 @@
                 click: function () {
 									var time = this.x + 6;
 									selectedtime = String(time);
+									document.getElementById('left12').innerHTML = 'Showing results for Singarpore MRT system on <b>' + selectedtime + ':00</b> on weekday of Jan 2019';
 									if (selectedstation != ''){
 										gettop5(time,selectedstation);
 										getData(time);
@@ -257,22 +260,15 @@
 		}
 
 
-
-		// Task 3.1 - Start the map using a function
 		google.maps.event.addDomListener(window, 'load', initialize);
 
-		// Task 6 --  Make the markers display on map load.
-
 	});
+
 
 		function getData(time){
 
 			setAllMap(null);
 			markerArray = [];
-
-			// Task 4.1 - Edit this variable so that it points to our API Look at http://dev.spatialdatacapture.org:8870 for the values you need
-			//var url = "http://dev.spatialdatacapture.org:8870/data/"+lat+"/"+lng+"/500";
-			//var url = "http://dev.spatialdatacapture.org:8876/data/centrality/"+time;
 			var url = "https://sgmrtanalysis.herokuapp.com/data/centrality/"+time;
 
 			$.getJSON( url , function( data ) {
@@ -335,7 +331,6 @@
 		     				  });
 
 
-
 							 google.maps.event.addListener(marker, 'click', function(content) {
 									return function(){
 									if (selectedmarker != null){
@@ -349,10 +344,9 @@
 									}
 									marker.setIcon(icon3);
 									newicon1(scale);
-									//marker.setAnimation(google.maps.Animation.BOUNCE);
 								    document.getElementById("right").style.visibility="visible";
+									$("#right").fadeIn("slow");
 								    document.getElementById('right1').textContent = v.stations_name;
-									//document.getElementById('right2').textContent = v.stations_ID;
 									selectedmarker = marker;
 									selectedstation = v.stations_ID;
 									getcentralityflow(v.stations_ID);
@@ -375,10 +369,10 @@
 
 							 google.maps.event.addListener(marker, 'mouseover', function(content) {
 							 	return function(){
+									z = marker.zIndex;
+									marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1)
 							 		infowindow.setContent(v.stations_name);
 							 	    infowindow.open(map,this);
-										z = marker.zIndex;
-										marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1)
 										if (v.stations_ID != selectedstation) {
 												marker.setIcon(icon2);
 										}
@@ -391,7 +385,7 @@
 										if (selectedstation != null) {
 						            if (v.stations_ID != selectedstation) {
 						                marker.setIcon(icon1);
-														marker.setZIndex(z);
+										marker.setZIndex(z);
 						            }
 						        }
 										else{
@@ -400,6 +394,11 @@
 										}
 							 	}
 							 }(""));
+
+							 google.maps.event.addListener(infowindow, 'domready', function(){
+							         $(".gm-style-iw").parent().find("button").removeAttr("style").hide();
+							        });
+
 
 							 markerArray.push(marker);
 							 })
@@ -410,7 +409,8 @@
 		}
 
     function hidebar(){
-		document.getElementById("right").style.visibility="hidden";
+		//document.getElementById("right").style.visibility="hidden";
+		$("#right").fadeOut("slow");
 		selectedstation=null;
 		getData(selectedtime);
 	}
@@ -427,6 +427,7 @@
 	function onoff2(){
 	    var checkBox = document.getElementById("myonoffswitch2");
 	    if (checkBox.checked == true){
+				document.getElementById('left12').innerHTML = 'Showing results for Singarpore MRT system from <b>6:00</b> to <b>21:00</b> on weekday of Jan 2019';
 		    getData("0");
 		} else {
 			selectedtime = String(6);
@@ -475,10 +476,10 @@
 	$('#left3').click(function(){
 		var lr = document.getElementById("lr");
 	    if(isHiden){
-	        $('#left').animate({left:'+=55%'});//菜单块向右移动
+	        $('#left').animate({left:'+=55%'},800);//菜单块向右移动
 			lr.setAttribute("src","img/left.png");
 	    }else{
-	        $('#left').animate({left:'-=55%'}); //菜单块向左移动
+	        $('#left').animate({left:'-=55%'},800); //菜单块向左移动
 			lr.setAttribute("src","img/right.png");
 	    }
 	    isHiden = !isHiden;

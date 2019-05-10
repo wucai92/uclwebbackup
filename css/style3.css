@@ -1,0 +1,58 @@
+html, body {
+    margin: 0;
+}
+
+#page1{
+	height:100%;
+    width: 100%;
+	background-color: #dddfce;
+	z-index:1;
+	font-size:25px;
+	font-family: 'Roboto';
+	color: #ffffff;
+	margin: 0;
+}
+
+#page2{
+	height:100%;
+    width: 100%;
+	background-color: #aadcda;
+	z-index:1;
+	font-size:25px;
+	font-family: 'Roboto';
+	color: #ffffff;
+	margin: 0;
+}
+
+#page3{
+	height:100%;
+    width: 100%;
+	background-color: #123456;
+	z-index:1;
+	font-size:25px;
+	font-family: 'Roboto';
+	color: #ffffff;
+	margin: 0;
+}
+
+#page4{
+	height:100%;
+    width: 100%;
+	background-color: #654321;
+	z-index:1;
+	font-size:25px;
+	font-family: 'Roboto';
+	color: #ffffff;
+	margin: 0;
+}
+
+#page5{
+	height:100%;
+    width: 100%;
+	background-color: #121212;
+	z-index:1;
+	font-size:25px;
+	font-family: 'Roboto';
+	color: #ffffff;
+	margin: 0;
+}
