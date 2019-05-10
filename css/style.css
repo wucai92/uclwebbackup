@@ -10,7 +10,6 @@ html, body, #wrapper{
     width: 100%;
 	left:0px;
 	top:0px;
-	background-color: rgba(208,215,225,0);
 	z-index:1;
 	font-size:25px;
 	font-family: 'Roboto';
@@ -37,22 +36,22 @@ html, body, #wrapper{
 	position: absolute;
     height: 50px;
     width: 20px;
-	right:250px;
+	right:200px;
 	top:10px;
-	font-size:25px;
+	font-size:20px;
 }
 
 #a2{
 	position: absolute;
     height: 50px;
     width: 20px;
-	right:150px;
+	right:100px;
 	top:10px;
-	font-size:25px;
+	font-size:20px;
 }
-
-a:link {color:#FFFFFF;}
-a:visited {color:#FFFF88;}
+  
+a:link {color:#FFFFFF;}  
+a:visited {color:#FFFF88;} 
 a:hover {color:#CCFFFF;}
 
 
@@ -182,7 +181,7 @@ a:hover {color:#CCFFFF;}
 	position: absolute;
 	top:5px;
 	right:5px;
-}
+} 
 
 #right1{
 	position: absolute;
@@ -289,9 +288,9 @@ a:hover {color:#CCFFFF;}
     height: 70px;
     width: 100%;
 	top:100px;
-	font-size:11px;
+	font-size:10px;
 	color: #adb7c2;
-  text-align:justify;
+	text-align:justify;
 }
 
 #right3{
