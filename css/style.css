@@ -210,10 +210,6 @@ a:hover {color:#CCFFFF;}
 	font-style:italic;
 }
 
-#right23{
-  text-align:justify;
-}
-
 #codename{
 	position: absolute;
     height: 20px;
@@ -295,6 +291,7 @@ a:hover {color:#CCFFFF;}
 	top:100px;
 	font-size:11px;
 	color: #adb7c2;
+  text-align:justify;
 }
 
 #right3{
