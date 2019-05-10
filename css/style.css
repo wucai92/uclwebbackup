@@ -50,9 +50,9 @@ html, body, #wrapper{
 	top:10px;
 	font-size:25px;
 }
-  
-a:link {color:#FFFFFF;}  
-a:visited {color:#FFFF88;} 
+
+a:link {color:#FFFFFF;}
+a:visited {color:#FFFF88;}
 a:hover {color:#CCFFFF;}
 
 
@@ -182,7 +182,7 @@ a:hover {color:#CCFFFF;}
 	position: absolute;
 	top:5px;
 	right:5px;
-} 
+}
 
 #right1{
 	position: absolute;
@@ -208,6 +208,10 @@ a:hover {color:#CCFFFF;}
     height: 100px;
     width: 50%;
 	font-style:italic;
+}
+
+#right23{
+  text-align:justify;
 }
 
 #codename{
