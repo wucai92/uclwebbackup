@@ -76,7 +76,7 @@ function getstationflow(stations_ID){
       };
       var series =  [
        {
-          name: 'in',
+          name: 'Inbound',
       showInLegend: false,
       color: '#9CBADF',
           lineWidth: 3,
@@ -86,35 +86,35 @@ function getstationflow(stations_ID){
                fontWeight: "light",
                fontFamily: "Roboto"
              },
-       shadow: {
+      /* shadow: {
        color: '#000000',
        opacity: 0.2,
        width: 3,
        offsetX: 1,
        offsetY: 3,
        blur:6
-      },
+     },*/
           data: flowin
        },
        {
-          name: 'out',
+          name: 'Outbound',
       showInLegend: false,
-      color: '#DB9996',
+      color: '#FFB580',
           lineWidth: 3,
           style: {
-               color: '#DDE3E9',
+               color: '#FF974D',
                fontSize: "10px",
                fontWeight: "light",
                fontFamily: "Roboto"
              },
-       shadow: {
+       /*shadow: {
        color: '#000000',
        opacity: 0.2,
        width: 3,
        offsetX: 1,
        offsetY: 3,
        blur:6
-      },
+     },*/
           data: flowout
        }
       ];
@@ -219,14 +219,14 @@ function getstationflow(stations_ID){
               fontWeight: "light",
               fontFamily: "Roboto"
             },
-			shadow: {
+		/*	shadow: {
 			color: '#000000',
 			opacity: 0.2,
 			width: 3,
 			offsetX: 1,
 			offsetY: 3,
 			blur:6
-		},
+		},*/
          data: flowdata
       }
    ];
@@ -374,29 +374,29 @@ series: [{
           showInLegend: false,
 borderRadiusBottomLeft: 50,
 borderRadiusBottomRight: 50,
-shadow: {
+/*shadow: {
        color: '#000000',
        opacity: 0.2,
        width: 3,
        offsetX: 1,
        offsetY: 3,
        blur:6
-      },
+     },*/
   data: invalue_m,
 
 }, {
   name: 'Out Flow',
-    color: '#DB9996',
+    color: '#FFB580',
     borderRadiusTopLeft: 50,
     borderRadiusTopRight: 50,
-	shadow: {
+	/*shadow: {
        color: '#000000',
        opacity: 0.2,
        width: 3,
        offsetX: 1,
        offsetY: 3,
        blur:6
-      },
+     },*/
     showInLegend: false,
   data: outvalue
 }]
