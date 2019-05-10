@@ -280,8 +280,8 @@
 							 var latLng = new google.maps.LatLng(v.Latitude, v.Longitude);
 							 dataArray.push(latLng);
 							 //var color  = HSLToRGB(213,(40+60*v.centrality),(30+45*v.centrality));
-							 var color  = HSLToRGB((200+159*v.centrality),90,70);
-							 //var color  = HSLToRGB(25,100,(90-35*v.centrality));
+							 //var color  = HSLToRGB((200+159*v.centrality),90,70);
+							 var color  = HSLToRGB(25,100,(90-35*v.centrality));
 							 console.log(color);
 
 
@@ -445,7 +445,7 @@
 	function newicon1(v){ iconstyle = {
 											 path: google.maps.SymbolPath.CIRCLE,
 											 scale: v*20+6,
-											 fillColor: '#c0cddd',
+											 fillColor: HSLToRGB(25,100,(90-35*v)),
 											 fillOpacity: 0.9,
 								 strokeWeight: 0
 										}
