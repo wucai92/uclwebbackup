@@ -43,15 +43,18 @@ function getstationflow(stations_ID){
              }
       };
       var xAxis = {
-       categories: ['6AM','','','9AM','','','12AM','','','3PM','','','6PM','','','9PM'],
+       categories: ['6:00','','','9:00','','','12:00','','','15:00','','','18:00','','','21:00'],
       labels:{
-           //rotation: -45,
+        step:1,
+           rotation: 0,
+           overflow: 'justify',
            style: {
                color: '#BFC7CF',
                fontSize: "8px",
                fontWeight: "light",
                fontFamily: "Roboto",
              }
+
       }
       };
       var yAxis = {
@@ -170,9 +173,9 @@ function getstationflow(stations_ID){
             }
    };
    var xAxis = {
-      categories: ['6AM','','','9AM','','','12AM','','','3PM','','','6PM','','','9PM'],
+      categories: ['6','','','9','','','12','','','15','','','18','','','21'],
 	  labels:{
-	        //rotation: -45,
+	        rotation: 0,
 	        style: {
               color: '#BFC7CF',
               fontSize: "8px",

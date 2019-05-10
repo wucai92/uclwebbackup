@@ -49,9 +49,9 @@ html, body, #wrapper{
 	top:10px;
 	font-size:20px;
 }
-  
-a:link {color:#FFFFFF;}  
-a:visited {color:#FFFF88;} 
+
+a:link {color:#FFFFFF;}
+a:visited {color:#FFFF88;}
 a:hover {color:#CCFFFF;}
 
 
@@ -166,7 +166,7 @@ a:hover {color:#CCFFFF;}
 #right{
 	position: absolute;
     height: 670px;
-    width: 300px;
+    width: 320px;
 	right:25px;
 	bottom:30px;
 	background-color: rgba(55,62,74,0.8);
@@ -181,7 +181,7 @@ a:hover {color:#CCFFFF;}
 	position: absolute;
 	top:5px;
 	right:5px;
-} 
+}
 
 #right1{
 	position: absolute;
