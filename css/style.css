@@ -345,7 +345,7 @@ position: absolute; width: 120%;
 }
 .onoffswitch1-label1 {
 display: block; overflow: hidden; cursor: pointer; height: 20px;
-    border: 2px solid #FFFFFF; border-radius: 100px;
+    border: 1px solid #FFFFFF; border-radius: 100px;
 }
 .onoffswitch1-inner1 {
     display: block; width: 200%; margin-left: -100%;
@@ -402,7 +402,7 @@ position: absolute; width: 120%;
 }
 .onoffswitch2-label2 {
 display: block; overflow: hidden; cursor: pointer; height: 20px;
-    border: 2px solid #FFFFFF; border-radius: 100px;
+    border: 1px solid #FFFFFF; border-radius: 100px;
 }
 .onoffswitch2-inner2 {
     display: block; width: 200%; margin-left: -100%;
