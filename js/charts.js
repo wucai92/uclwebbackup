@@ -243,7 +243,6 @@ function getstationflow(stations_ID){
    $('#right4').highcharts(json);
  });
 };
- //getcentralityflow('CC1-NE6-NS24')
 
 
 
@@ -372,9 +371,9 @@ series: [{
   name: 'In Flow',
     color: '#9CBADF',
           showInLegend: false,
-borderRadiusBottomLeft: 50,
+/*borderRadiusBottomLeft: 50,
 borderRadiusBottomRight: 50,
-/*shadow: {
+shadow: {
        color: '#000000',
        opacity: 0.2,
        width: 3,
@@ -387,9 +386,9 @@ borderRadiusBottomRight: 50,
 }, {
   name: 'Out Flow',
     color: '#FFB580',
-    borderRadiusTopLeft: 50,
+	/*    borderRadiusTopLeft: 50,
     borderRadiusTopRight: 50,
-	/*shadow: {
+shadow: {
        color: '#000000',
        opacity: 0.2,
        width: 3,

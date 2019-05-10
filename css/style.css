@@ -361,7 +361,7 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
     padding-right: 0%;
     margin-top: -4.5px;
     font-size:12px;
-    font-weight:normal;
+    font-weight:bold;
 	text-align: center;
     font-family: "Roboto";
     background-color: #FFFFFF; color:#373E4A;
@@ -419,7 +419,7 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
     padding-right: 0px;
     margin-top: -4.5px;
     font-size:12px;
-    font-weight:normal;
+    font-weight:bold;
     font-family: "Roboto";
     background-color: #FFFFFF; color:#373E4A;
 }
