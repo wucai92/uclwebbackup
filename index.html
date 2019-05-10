@@ -91,6 +91,7 @@
 	var selectedtime = '0';
 	var selectedmarker;
 	var iconstyle;
+	var z;
 	var infowindow = new google.maps.InfoWindow({maxWidth: 300});
 	var transitLayer = new google.maps.TransitLayer();
 
@@ -114,54 +115,6 @@
 			// Task 3.2 - Write the map into our DIV element
 			map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 			transitLayer.setMap(map);
-
-			/*google.maps.event.addListener(map, 'dragend', function() {
-				//var bounds = map.getBounds();
-				//console.log("SW: " + bounds.getSouthWest() + " NE: " + bounds.getNorthEast());
-				//console.log("Center: " + map.getCenter().lat() + ", " +  map.getCenter().lng());
-				//getData(map.getCenter().lat(), map.getCenter().lng());
-			});*/
-
-
-            //map.data.loadGeoJson("https://api.myjson.com/bins/pax40")
-            //map.data.addGeoJson(points);
-
-			/*map.data.setStyle({
-            icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-			  scale: 9,
-              fillColor: '#7288A9',
-              fillOpacity: 0.8,
-			  strokeColor: '#ffffff',
-			  strokeOpacity: 0.8,
-			  strokeWeight: 1,
-            }
-        });
-
-			map.data.addListener('mouseover', function(event) {
-			//map.data.revertStyle();
-			document.getElementById('right1').textContent =
-            "ID:"+event.feature.getProperty('STN_NO');
-			map.data.overrideStyle(event.feature, {icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-			  scale: 15,
-              fillColor: '#7288A9',
-              fillOpacity: 0.8,
-			  strokeColor: '#ffffff',
-			  strokeOpacity: 0.8,
-			  strokeWeight: 2,
-            }});
-			});
-
-		    map.data.addListener('click', function(event) {
-			document.getElementById('right2').textContent =
-            event.feature.getProperty('STN_NAME');
-            ;
-			});
-
-			map.data.addListener('mouseout', function(event) {
-            map.data.revertStyle();
-            });*/
 
     //chart1
 	function gettotaldailyflow() {
@@ -424,6 +377,8 @@
 							 	return function(){
 							 		infowindow.setContent(v.stations_name);
 							 	    infowindow.open(map,this);
+										z = marker.zIndex;
+										marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1)
 										if (v.stations_ID != selectedstation) {
 												marker.setIcon(icon2);
 										}
@@ -436,26 +391,15 @@
 										if (selectedstation != null) {
 						            if (v.stations_ID != selectedstation) {
 						                marker.setIcon(icon1);
+														marker.setZIndex(z);
 						            }
 						        }
 										else{
 											marker.setIcon(icon1);
+											marker.setZIndex(z);
 										}
 							 	}
 							 }(""));
-
-
-							/*map.data.addListener('mouseover', function(event) {
-							  map.data.overrideStyle(event.feature, {icon: {
-								  path: google.maps.SymbolPath.CIRCLE,
-								  scale: 15,
-								  fillColor: '#7288A9',
-								  fillOpacity: 0.8,
-								  strokeColor: '#ffffff',
-								  strokeOpacity: 0.8,
-								  strokeWeight: 2,
-								}});
-								});*/
 
 							 markerArray.push(marker);
 							 })
