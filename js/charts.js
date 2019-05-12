@@ -3,8 +3,8 @@ function getstationflow(stations_ID){
     var url = "https://sgmrtanalysis.herokuapp.com/data/stationflow/" + stations_ID;
     $.getJSON(url, function( data ) {
       var flow = Object.values(data[0])
-      var flowin = flow.slice(0, 16);
-      var flowout = flow.slice(16, 32);
+      var flowout = flow.slice(0, 16);
+      var flowin = flow.slice(16, 32);
 
 
       var credits = {
