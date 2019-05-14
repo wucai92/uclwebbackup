@@ -20,7 +20,7 @@ body{
   -webkit-transition-duration: 0.4s; 
   transition-duration: 0.4s;
   z-index:4;
-  top:70%;
+  top:75%;
   left:41%;
 }
 
@@ -29,47 +29,6 @@ body{
   color: white;
   border:none;
   
-}
-
-.pp1{
-	border:none;
-	width:40%;
-	height:30%;
-	text-align:center;
-	color:#DDE3E9;
-	font-family: 'Roboto';
-  font-weight: medium;
-  font-size:25px;
-  position: absolute;
-  top:25%;
-  left:30%;
-  
-}
-
-.pp2{
-	width:40%;
-	height:100px;
-	color:#ADB7C2;
-	font-family: 'Roboto';
-  font-weight: normal ;
-  font-size: 15px;
-  position: absolute;
-  margin:auto;
-  display: inline-block;
-  text-decoration: none;
-  text-align: justify;
-  top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-#logo {
-    position: absolute;
-	left:0%;
-	top:0%;
-	z-index: 1;
-	
 }
 
 .bg1{

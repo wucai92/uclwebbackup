@@ -10,11 +10,11 @@ html, body, #wrapper{
     width: 100%;
 	left:0px;
 	top:0px;
-	background-color: rgba(208,215,225,0);
+	background-color: rgba(55,62,74,0);
 	z-index:1;
 	font-size:25px;
 	font-family: 'Roboto';
-	color: #ffffff;
+	color: #000000;
 }
 
 #logo{
@@ -39,9 +39,9 @@ html, body, #wrapper{
     height: 100%;
     width: 0%;
 	right:14%;
-	top:20%;
+	top:25%;
 	font-size:18px;
-  font-weight:normal;
+    font-weight:normal;
 }
 
 #a2{
@@ -49,19 +49,19 @@ html, body, #wrapper{
     height: 100%;
     width: 0%;
 	right:7%;
-	top:21%;
+	top:25%;
 	font-size:18px;
-  font-weight:normal;
+    font-weight:normal;
 }
 
-a:link {color:#FFFFFF;text-decoration:none;}
-a:visited {color:#FFFFFF;text-decoration:none;}
-a:hover {color:#CCFFFF;text-decoration:none;}
+a:link {color:#000000;text-decoration:none;}
+a:visited {color:#000000;text-decoration:none;}
+a:hover {color:#B29F7D;text-decoration:none;}
 
 
 #left{
 	position: absolute;
-    height: 180px;
+    height: 200px;
     width: 55%;
 	left:-53.9%;
 	bottom:30px;
@@ -101,7 +101,7 @@ a:hover {color:#CCFFFF;text-decoration:none;}
     height: 100%;
     width: 85%;
 	left:9%;
-	top:27%;
+	top:25%;
 	z-index:2;
 	font-size:11px;
     text-align: left;
@@ -113,7 +113,7 @@ a:hover {color:#CCFFFF;text-decoration:none;}
 	width: 50%;
 	z-index:2;
 	left:9%;
-	bottom:32.5%;
+	bottom:40%;
     font-size:12px;
     font-weight:bold;
     font-family: "Roboto";
@@ -124,7 +124,7 @@ a:hover {color:#CCFFFF;text-decoration:none;}
 	width: 115px;
 	z-index:2;
 	right:5%;
-	bottom:30%;
+	bottom:37.5%;
 }
 
 #left14Q{
@@ -132,7 +132,7 @@ a:hover {color:#CCFFFF;text-decoration:none;}
 	width: 50%;
 	z-index:2;
 	left:9%;
-	bottom: 11.5%;
+	bottom: 25%;
     font-size:12px;
     font-weight:bold;
     font-family: "Roboto";
@@ -143,7 +143,26 @@ a:hover {color:#CCFFFF;text-decoration:none;}
 	width: 115px;
 	z-index:2;
 	right:5%;
-	bottom:9%;
+	bottom:22.5%;
+}
+
+#left15Q{
+	position: absolute;
+	width: 50%;
+	z-index:2;
+	left:9%;
+	bottom: 10%;
+    font-size:12px;
+    font-weight:bold;
+    font-family: "Roboto";
+}
+
+#left15{
+	position: absolute;
+	width: 115px;
+	z-index:2;
+	right:5%;
+	bottom:7.5%;
 }
 
 #left2{
@@ -352,7 +371,7 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
     transition: margin 0.3s ease-in 0s;
 }
 .onoffswitch1-inner1:before, .onoffswitch1-inner1:after {
-    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    display: block; float: left; width: 50%; height: 100%; padding: 0px; line-height: 30px;
     font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
     box-sizing: border-box;
 }
@@ -409,7 +428,7 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
     transition: margin 0.3s ease-in 0s;
 }
 .onoffswitch2-inner2:before, .onoffswitch2-inner2:after {
-    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    display: block; float: left; width: 50%; height: 100%; padding: 0; line-height: 30px;
     font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
     box-sizing: border-box;
 }
@@ -447,5 +466,62 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
     margin-left: 0;
 }
 .onoffswitch2-checkbox2:checked + .onoffswitch2-label2 .onoffswitch2-switch2 {
+    right: 0px;
+}
+
+.onoffswitch3 {
+position: absolute; width: 120%;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch3-checkbox3 {
+    display: none;
+}
+.onoffswitch3-label3 {
+display: block; overflow: hidden; cursor: pointer; height: 20px;
+    border: 1px solid #FFFFFF; border-radius: 100px;
+}
+.onoffswitch3-inner3 {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch3-inner3:before, .onoffswitch3-inner3:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch3-inner3:before {
+    content: "Light";
+	text-align: center;
+    padding-right: 0px;
+    margin-top: -4.5px;
+    font-size:12px;
+    font-weight:bold;
+    font-family: "Roboto";
+    background-color: #FFFFFF; color:#373E4A;
+}
+.onoffswitch3-inner3:after {
+    content: "Dark";
+	text-align: center;
+    margin-left: -43px;
+	margin-top: -4.5px;
+    font-size:12px;
+    font-weight:normal;
+    font-family: "Roboto";
+    background-color: false; color: #FFFFFF;
+    text-align: right;
+}
+/*.onoffswitch-switch{
+    display: block; width: 18px; margin: 6px;
+    background:#000000;
+    position: absolute; top: 0; bottom: 0;
+    right: 46px;
+    border: 8px solid #373E4A; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}*/
+
+.onoffswitch3-checkbox3:checked + .onoffswitch3-label3 .onoffswitch3-inner3 {
+    margin-left: 0;
+}
+.onoffswitch3-checkbox3:checked + .onoffswitch3-label3 .onoffswitch3-switch3 {
     right: 0px;
 }
