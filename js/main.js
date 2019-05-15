@@ -370,15 +370,15 @@
 		var checkBox = document.getElementById("myonoffswitch3");
 		if (checkBox.checked == true){
 			map.setOptions({styles: lightMap});
-			$("#header").css({"color":"#000000"});
-			$("a:link").css({"color":"#000000"});
+			$("#header").css({"color":"#373E4A"});
+			$("a:link").css({"color":"#373E4A"});
 		} else {
 			map.setOptions({styles: darkMap});
-			$("#header").css({"color":"#FFFFFF"}); 
+			$("#header").css({"color":"#FFFFFF"});
 			$("a:link").css({"color":"#FFFFFF"});
 		}
 	};
-	
+
 	function newicon1(v){ iconstyle = {
 								 path: google.maps.SymbolPath.CIRCLE,
 								 scale: v*20+6,
