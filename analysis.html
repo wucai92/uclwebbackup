@@ -23,11 +23,11 @@
 <body>
 <div id='header'>
 	<div id='logo'>
-		<img src="img/logo2.png" alt="logo" width="30" height="30">
+		<img src="img/logo2.png" href="index.html" alt="logo" width="30" height="30">
 	</div>
-	<div id='header1'>Singapore Rail Transit Research</div>
-	<div id='a1'><a href="about.html">About</a></div>
-	<div id='a2'><a href="index.html">Map</a></div>
+	<div id='header1' href="index.html">Singapore Rail Transit Research</div>
+	<div id='a1'><a href="analysis.html">Analysis</a></div>
+	<div id='a2'><a href="about.html">About</a></div>
 </div>
 <div id='page1'>
 	 <img id="bgimg" src="img/analysis.png" alt="pic" height="100%" width="100%">
@@ -36,36 +36,36 @@
 <div id='page2'>
 	<div class="leftbar"><span>Introduction</span></br></br><a class='p3'>Data & Methodology</a></br></br><a class='p4'>General Observation</br>& Analysis</a></br></br><a class='p5'>Case Study</a></div>
 	<div class="title">INTRODUCTION</div>
-	<div class="content">The Mass Rapid Transit (MRT) and Light Rail Transit (LRT) are the core components of Singapore public transport system. 
-	The MRT has had 5 lines and 119 stations in operation since it first opened in 1987, while the LRT has 3 lines and 43 stations (31 of which are in operation). 
-	The MRT and LRT are closely connected to public life as irreplaceable commuting tools in Singapore. The aim of this project was to discover possible travel 
-	patterns in the Singapore rail network system: are there any travel peaks? how does the flows between station’s varies with time? This website is created to 
-	intuitively show the operation of the MRT and LRT, as well as the analysis results of journeys between stations form 6AM to 9PM on weekdays. 
+	<div class="content">The Mass Rapid Transit (MRT) and Light Rail Transit (LRT) are the core components of Singapore public transport system.
+	The MRT has had 5 lines and 119 stations in operation since it first opened in 1987, while the LRT has 3 lines and 43 stations (31 of which are in operation).
+	The MRT and LRT are closely connected to public life as irreplaceable commuting tools in Singapore. The aim of this project was to discover possible travel
+	patterns in the Singapore rail network system: are there any travel peaks? how does the flows between station’s varies with time? This website is created to
+	intuitively show the operation of the MRT and LRT, as well as the analysis results of journeys between stations form 6AM to 9PM on weekdays.
 	</div>
 </div>
 <div id='page3'>
 	<div class="leftbar"><a class='p2'>Introduction</a></br></br><span>Data & Methodology</span></br></br><a class='p4'>General Observation</br>& Analysis</br></br><a class='p5'>Case Study</a></div>
 	<div class="title">DATA & METHODOLOGY</div>
 	<div class="content">
-		<div class="pa">The analysis is mainly based on two indexes of centrality: betweenness and eigenvector. Betweenness, in simple terms, it measures 
-		the centrality of a node based on the numbers of shortest paths that pass through this node. In this project, the distance weighted betweenness 
-		was used to measure the importance of the stations of the MRT and LRT, which is regarded as a static measurement. The eigenvector centrality of 
-		a station is based on the sum of the centralities of its neighbours. Stations can gain high centrality by establishing flows to other stations 
-		with high centrality. In this project, passenger flow network was constructed to produce eigenvector centrality. It was used to measure the 
-		importance of stations at different time periods on weekdays. </br></br>The open data used in this website came from Land Transport Authority of Singapore. 
-		It is the public transport journey data which include journeys between stations during the weekday and weekend. Based on our research scope, 
+		<div class="pa">The analysis is mainly based on two indexes of centrality: betweenness and eigenvector. Betweenness, in simple terms, it measures
+		the centrality of a node based on the numbers of shortest paths that pass through this node. In this project, the distance weighted betweenness
+		was used to measure the importance of the stations of the MRT and LRT, which is regarded as a static measurement. The eigenvector centrality of
+		a station is based on the sum of the centralities of its neighbours. Stations can gain high centrality by establishing flows to other stations
+		with high centrality. In this project, passenger flow network was constructed to produce eigenvector centrality. It was used to measure the
+		importance of stations at different time periods on weekdays. </br></br>The open data used in this website came from Land Transport Authority of Singapore.
+		It is the public transport journey data which include journeys between stations during the weekday and weekend. Based on our research scope,
 		we deleted the unrelated columns to acquire the original data which is shown in the figure.
 		</div></br>
 		<img src="img/table1.jpg" alt="pic" width="100%">
-		<div class="pa"></br>The time studied in this research is limited from 6:00 to 21:00. First, the total flow for each hour could be obtained by summing up the 
-		total trips. As the bar chart shows, there are two commuting peaks in a day which is around 8am and 6pm. 
+		<div class="pa"></br>The time studied in this research is limited from 6:00 to 21:00. First, the total flow for each hour could be obtained by summing up the
+		total trips. As the bar chart shows, there are two commuting peaks in a day which is around 8am and 6pm.
 		</div>
 		</br>
 		<div id="chart1"></div>
-		<div class="pa"></br>MySQL was applied to process the original data to produce the flows of the entire day and respective hours. 17 tables in total are produced. 
-		Furthermore, the Pandas and NetworkX libraries in python was used to generate two different kind of networks. The first one is static network based on the 
-		rail infrastructure: an undirected network weighted by the distance between each station. The second one is based on the flows between stations: a dynamic 
-		directed network weighted by the inbound and outbound flows. At the next stage, we calculated the betweenness centrality of the static network and the 
+		<div class="pa"></br>MySQL was applied to process the original data to produce the flows of the entire day and respective hours. 17 tables in total are produced.
+		Furthermore, the Pandas and NetworkX libraries in python was used to generate two different kind of networks. The first one is static network based on the
+		rail infrastructure: an undirected network weighted by the distance between each station. The second one is based on the flows between stations: a dynamic
+		directed network weighted by the inbound and outbound flows. At the next stage, we calculated the betweenness centrality of the static network and the
 		eigenvector centralities for each hour of the dynamic one through NetworkX in Python. All the results are stored in one Dataframe as the figure below.
 		</div>
 		</br>
@@ -76,9 +76,9 @@
 	<div class="leftbar"><a class='p2'>Introduction</a></br></br><a class='p3'>Data & Methodology</a></br></br><span>General Observation</br>& Analysis</span></br></br><a class='p5'>Case Study</a></div>
 	<div class="title">GENERAL OBSERVATION & ANALYSIS</div>
 	<div class="content">
-		<div class="pa">According to the betweenness centrality, the stations with higher scores concentrate in the relatively low urban density area rather than 
-		the city center which located in the south of Singapore. The Downtown line and North East line have the most significant values and the Newton MRT station 
-		is the most significant one in the system. The LRT can be considered as a limitation of the network, which influences the betweenness to some extent. 
+		<div class="pa">According to the betweenness centrality, the stations with higher scores concentrate in the relatively low urban density area rather than
+		the city center which located in the south of Singapore. The Downtown line and North East line have the most significant values and the Newton MRT station
+		is the most significant one in the system. The LRT can be considered as a limitation of the network, which influences the betweenness to some extent.
 		Regarding that, the east part of Downtown line is the most important area in the system.</div></br>
 		<img src="img/all.png" alt="pic" width="100%">
 		</br></br>
@@ -100,20 +100,20 @@
 			<div><img src="img/20.png" title="20:00"></div>
 			<div><img src="img/21.png" title="21:00"></div>
 		</div>
-		<div class="pa">While the betweenness centrality of stations produced by the static train network show that the stations on downtown(blue) line and 
-		north-south(purple) line have relatively important in the train system. The results from the eigenvector shows a very different . As mentioned earlier, 
-		the eigenvector centrality was measure using the flow data of commuters in the Singapore train system, which forms the dynamic network. the eigenvector 
-		centrality of each stations varies with time and reveals the travel pattern. </br></br>Using the interactive visualization of eigenvector, it could be 
-		observed that in the during the first peak, stations at the south, mainly from central district, experience a high centrality and inbound flow: Stations 
-		at the west of East-West (green) line, where  the industrial zones are located, have high centrality between 6am and 7am; Stations at central business 
-		district with high concentration of office buildings, experience an increase in both centrality and inbound flow from 7 am to 9am. During the interpeak 
-		period,  stations traditionally associated with commercial activities seen increasing importance in the network, such as Orchard; from the afternoon 
-		onwards stations happened to be town centres, mostly located at North-South line, enjoy higher centrality in the system. Meanwhile the centrality of 
-		the stations at the central district declines. From these general observations, we could make simply deduce the following scenarios: in the early morning, 
-		industrial district at the west experience high volume from people travelling to work, following by the office district. The commercial activities at 
-		major commercial centres and town centres began to resume at around 10 am. During the second peak, people travelling from their work place back to home, 
-		mostly located in the towns at north of Singapore. </br></br>A more detailed analysis could be conducted using the data of the specific stations. 
-		In the next section, this study will pick one typical station for a simple analysis to show how the website could be utilized for analysis on a specific 
+		<div class="pa">While the betweenness centrality of stations produced by the static train network show that the stations on downtown(blue) line and
+		north-south(purple) line have relatively important in the train system. The results from the eigenvector shows a very different . As mentioned earlier,
+		the eigenvector centrality was measure using the flow data of commuters in the Singapore train system, which forms the dynamic network. the eigenvector
+		centrality of each stations varies with time and reveals the travel pattern. </br></br>Using the interactive visualization of eigenvector, it could be
+		observed that in the during the first peak, stations at the south, mainly from central district, experience a high centrality and inbound flow: Stations
+		at the west of East-West (green) line, where  the industrial zones are located, have high centrality between 6am and 7am; Stations at central business
+		district with high concentration of office buildings, experience an increase in both centrality and inbound flow from 7 am to 9am. During the interpeak
+		period,  stations traditionally associated with commercial activities seen increasing importance in the network, such as Orchard; from the afternoon
+		onwards stations happened to be town centres, mostly located at North-South line, enjoy higher centrality in the system. Meanwhile the centrality of
+		the stations at the central district declines. From these general observations, we could make simply deduce the following scenarios: in the early morning,
+		industrial district at the west experience high volume from people travelling to work, following by the office district. The commercial activities at
+		major commercial centres and town centres began to resume at around 10 am. During the second peak, people travelling from their work place back to home,
+		mostly located in the towns at north of Singapore. </br></br>A more detailed analysis could be conducted using the data of the specific stations.
+		In the next section, this study will pick one typical station for a simple analysis to show how the website could be utilized for analysis on a specific
 		station.
 </div>
 	</div>
@@ -122,25 +122,25 @@
 	<div class="leftbar"><a class='p2'>Introduction</a></br></br><a class='p3'>Data & Methodology</a></br></br><a class='p4'>General Observation</br>& Analysis</a></br></br><span>Case Study</span></div>
 	<div class="title">CASE STUDY</div>
 	<div class="content">
-		<div class="pa">Raffles place station is a typical business hub which located in the centre district of Singapore. It is an important node for commuting 
-		where East-West line and North-south line intersect. As shown in the line chart 1, two peaks can be observed. The first one is the morning peak at 8 am 
-		which the number of inbound commuters are much higher than the outbound ones. In contrast, the night peak is around 6 pm with higher number of outbound 
+		<div class="pa">Raffles place station is a typical business hub which located in the centre district of Singapore. It is an important node for commuting
+		where East-West line and North-south line intersect. As shown in the line chart 1, two peaks can be observed. The first one is the morning peak at 8 am
+		which the number of inbound commuters are much higher than the outbound ones. In contrast, the night peak is around 6 pm with higher number of outbound
 		commuters. That means people enter this area in the morning to work and go back to the living area at night.</div></br>
 		<div id="chart2"></div>
-		<div class="pa"></br>Among them, as the bar charts show, all of the top five stations where people coming from at morning peak are located in residential sub 
-		towns, such as Ang Mo Kio. On the other hand, the first four stations where people leaving this station at night peak are all commercial centres where malls 
+		<div class="pa"></br>Among them, as the bar charts show, all of the top five stations where people coming from at morning peak are located in residential sub
+		towns, such as Ang Mo Kio. On the other hand, the first four stations where people leaving this station at night peak are all commercial centres where malls
 		and restaurants are located, which could suggests commuters are more inclined to go shopping or dinner after work rather than go back home directly.</div></br>
 		<div id="chart34">
 		<div id="chart3"></div>
 		<div id="chart4"></div>
 		</div>
-		<div class="pa"></br>Eigenvector as defined above refers to the significance of a station that depending on the importance of other stations connecting to it. 
-		It can be observed from the eigenvector plot graph that the stations Raffles place station generally is one of the most important station in the system 
-		with centrality value  at a high value at day time. It’s centrality culminate at morning peak hours and 1pm and slowly declines during the afternoon. 
+		<div class="pa"></br>Eigenvector as defined above refers to the significance of a station that depending on the importance of other stations connecting to it.
+		It can be observed from the eigenvector plot graph that the stations Raffles place station generally is one of the most important station in the system
+		with centrality value  at a high value at day time. It’s centrality culminate at morning peak hours and 1pm and slowly declines during the afternoon.
 		It could possibly suggests that the area where Raffles place located are more active during the day time, especially morning peak.</div></br>
 		<div id="chart5"></div>
 	</div>
-</div> 
+</div>
 <script language="JavaScript">
 $(function(){
   $('#bxslider').bxSlider({
@@ -162,12 +162,12 @@ $(document).ready(function () {
 		$('html, body').animate({
 		scrollTop: $("#page2").offset().top
 		}, 1000)
-	}), 
+	}),
 	$('.p3').click(function() {
 		$('html, body').animate({
 		scrollTop: $("#page3").offset().top
 		}, 1000)
-	}), 
+	}),
 	$('.p4').click(function (){
 		$('html, body').animate({
 		scrollTop: $("#page4").offset().top
@@ -182,7 +182,7 @@ $(document).ready(function () {
 
     $(window).scroll(function(){
         if($(window).scrollTop() < 700){
-            $("#header").css({"background-color":"transparent"});   
+            $("#header").css({"background-color":"transparent"});
         }
         else{
             $("#header").css({"background-color":"#162231"});
@@ -194,7 +194,7 @@ getstationflow('EW14_NS26');
 getcentralityflow('EW14_NS26');
 gettop51('8','EW14_NS26');
 gettop52('18','EW14_NS26');
-</script>	 
+</script>
 
 </body>
 </html>
