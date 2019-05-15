@@ -17,7 +17,7 @@
 
 			// Task 3.4 - Make the map look pretty
 			var mapOptions = {
-				center: new google.maps.LatLng(1.3500, 103.8245),
+				center: new google.maps.LatLng(1.3400, 103.8245),
 				zoom: 12,
 				//maxZoom:18,
 				styles: lightMap,
