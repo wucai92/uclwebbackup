@@ -189,7 +189,8 @@ function getstationflow(stations_ID){
        },
        {
           name: 'Outbound',
-      showInLegend: false,
+      showInLegend: false
+	  ,
       color: '#FFB580',
           lineWidth: 3,
           style: {
