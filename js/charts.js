@@ -126,7 +126,7 @@ function getstationflow(stations_ID){
       };
 
       var title = {
-       text: 'INBOUND & OUTBOUNT FLOW',
+       text: 'INBOUND & OUTBOUNT FLOW OF RAFFLES PLACE STATIONS',
        y:17,
        style: {
                color: '#000000',
@@ -137,7 +137,7 @@ function getstationflow(stations_ID){
       };
       var xAxis = {
 		  lineWidth: 0,
-       categories: ['6:00','','','9:00','','','12:00','','','15:00','','','18:00','','','21:00'],
+       categories: ['6:00','7:00','8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'],
       labels:{
         step:1,
            rotation: 0,
@@ -260,7 +260,7 @@ function getstationflow(stations_ID){
 };
 
    var title = {
-      text: 'EIGENVECTOR CENTRALITY',
+      text: 'EIGENVECTOR CENTRALITY OF RAFFLES STATION',
       y:17,
       style: {
               color: '#000000',
@@ -271,7 +271,7 @@ function getstationflow(stations_ID){
    };
    var xAxis = {
 	   lineWidth: 0,
-      categories: ['6:00','','','9:00','','','12:00','','','15:00','','','18:00','','','21:00'],
+      categories: ['6:00','7:00','8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'],
 	  labels:{
 	        rotation: 0,
           step:1,
@@ -375,7 +375,7 @@ chart: {
   backgroundColor:false
 },
 title: {
-  text: 'TOP 5 ORIGIN & DESTINATION',
+  text: 'TOP 5 ORIGIN & DESTINATION OF RAFFLES PLACE STATIONS AT 8AM',
   y:20,
     style: {
             color: '#000000',
@@ -534,7 +534,7 @@ chart: {
   backgroundColor:false
 },
 title: {
-  text: 'TOP 5 ORIGIN & DESTINATION',
+  text: 'TOP 5 ORIGIN & DESTINATION OF RAFFLES PLACE STATIONS AT 8PM',
   y:20,
     style: {
             color: '#000000',

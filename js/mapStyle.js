@@ -242,7 +242,7 @@ var darkMap = [
       { "visibility": "off" }
     ]
   }
-]			
+]
 
 var lightMap =
 [
