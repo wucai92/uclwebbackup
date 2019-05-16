@@ -145,7 +145,7 @@ span{
 #page3{
 	position:absolute;
   top:1300px;
-	height:2000px;
+	height:1900px;
     width: 100%;
 	background-color: #F8FBFF;
 	z-index:1;
@@ -157,8 +157,8 @@ span{
 
 #page4{
 	position:absolute;
-  top:3300px;
-	height:2100px;
+  top:3200px;
+	height:2200px;
     width: 100%;
 	background-color: #D0D7E1;
 	z-index:1;
