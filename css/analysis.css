@@ -4,9 +4,9 @@ html, body {
 
 #page1{
 	position: absolute;
-	height: 100%;
+	height: 800px;
     width: 100%;
-	text-align：center;
+	text-align:center;
 	z-index:1;
 	font-size:25px;
 	font-family: 'Roboto';
@@ -131,7 +131,7 @@ span{
 
 #page2{
 	position:absolute;
-  top:800px;
+    top:800px;
 	height:500px;
     width: 100%;
 	background-color: #D0D7E1;
@@ -144,7 +144,7 @@ span{
 
 #page3{
 	position:absolute;
-  top:1300px;
+    top:1300px;
 	height:1900px;
     width: 100%;
 	background-color: #F8FBFF;
@@ -157,8 +157,13 @@ span{
 
 #page4{
 	position:absolute;
+<<<<<<< HEAD
   top:3200px;
 	height:2400px;
+=======
+    top:3200px;
+	height:2200px;
+>>>>>>> 6dd87c9c02cd8d502759033a50635042a3cef053
     width: 100%;
 	background-color: #D0D7E1;
 	z-index:1;
@@ -170,7 +175,11 @@ span{
 
 #page5{
 	position:absolute;
+<<<<<<< HEAD
   top:5600px;
+=======
+    top:5400px;
+>>>>>>> 6dd87c9c02cd8d502759033a50635042a3cef053
 	height:1700px;
     width: 100%;
 	background-color: #F8FBFF;
