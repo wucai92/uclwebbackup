@@ -506,7 +506,7 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
     box-sizing: border-box;
 }
 .onoffswitch2-inner2:before {
-    content: "Betweenness";
+    content: "Static";
 	text-align: center;
     padding-right: 0px;
     margin-top: -4.5px;
@@ -516,9 +516,9 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
     background-color: #FFFFFF; color:#373E4A;
 }
 .onoffswitch2-inner2:after {
-    content: "Eigenvector";
+    content: "Dynamic";
 	text-align: center;
-    margin-left: -23px;
+    margin-left: -30px;
 	margin-top: -4.5px;
     font-size:12px;
     font-weight:normal;
