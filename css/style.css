@@ -58,12 +58,76 @@ a:link {color:#000000;text-decoration:none;}
 a:visited {color:#000000;text-decoration:none;}
 a:hover {color:#B29F7D;text-decoration:none;}
 
+#help{
+	position: absolute;
+	width: 174px;
+    height: 30px;
+	top:60px;
+	left:1%;
+	z-index:2;
+	font-size:15px;
+	font-family: 'Roboto';
+	font-weight:bold;
+	background-color: rgba(123,131,144,0.8);
+	color: #DDE3E9;
+	border-radius: 10px;
+	cursor:pointer;
+}
+
+#legend{
+	position: absolute;
+    height: 335px;
+    width: 174px;
+	top:100px;
+	left:1%;
+	background-color: rgba(55,62,74,0.8);
+	z-index:1;
+	border-radius: 10px;
+}
+
+#legendtitle{
+	position: absolute;
+	width: 174px;
+    height: 30px;
+	top:100px;
+	left:1%;
+	z-index:2;
+	font-size:15px;
+	font-family: 'Roboto';
+	font-weight:bold;
+	background-color: rgba(123,131,144,0.8);
+	color: #DDE3E9;
+	border-radius: 10px;
+	cursor:pointer;
+}
+
+.info{
+	position: absolute;
+	top:6px;
+	left:8%;
+	z-index:2;
+}
+
+.titletext{
+	position: absolute;
+	top:6px;
+	left:22%;
+}
+
+#legendimg{
+	position: absolute;
+    height: 84%;
+    width: 84%;
+	top:12%;
+	left:8%;
+	z-index:2;
+}
 
 #left{
 	position: absolute;
     height: 200px;
     width: 55%;
-	left:-53.9%;
+	left:1%;
 	bottom:30px;
 	background-color: rgba(55,62,74,0.8);
 	z-index:1;
@@ -72,7 +136,6 @@ a:hover {color:#B29F7D;text-decoration:none;}
 	color: #DDE3E9;
 	border-radius: 10px;
 }
-
 
 #left1{
 	position: absolute;
@@ -185,6 +248,7 @@ a:hover {color:#B29F7D;text-decoration:none;}
 	background-color: rgba(123,131,144,0.5);
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
+	cursor:pointer;
 }
 
 #switch{
@@ -212,7 +276,7 @@ a:hover {color:#B29F7D;text-decoration:none;}
 	position: absolute;
 	top:5px;
 	right:5px;
-  z-index: 2;
+	z-index: 2;
 }
 
 #right1{
