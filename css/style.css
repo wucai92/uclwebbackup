@@ -527,7 +527,7 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
 .onoffswitch2-inner2:after {
     content: "Dynamic";
 	text-align: center;
-    margin-left: -23px;
+    margin-left: -30px;
 	margin-top: -4.5px;
     font-size:12px;
     font-weight:normal;
