@@ -69,11 +69,11 @@ a:hover {color:#B29F7D;text-decoration:none;}
 
 #btnclose{
 	position: absolute;
-	left:49%;
 	top:90%;
+	width:100%;
 	z-index:3;
-	cursor:pointer;
 	color:#ffffff;
+	text-align:center;
 }
 
 #help{

@@ -329,7 +329,7 @@
 		$('#helppic').fadeIn();
 	});
 
-	$('#btnclose').click(function(){
+	$('#helppic').click(function(){
 		$('#helppic').fadeOut();
 	});
 	
@@ -338,6 +338,7 @@
 		$("#right").fadeOut("slow");
 		selectedstation=null;
 		getData(selectedtime);
+		
 	}
 
 	function onoff(){
