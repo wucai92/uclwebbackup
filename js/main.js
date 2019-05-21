@@ -320,7 +320,20 @@
       			setAllMap(map);
 			});
 		}
+    
+	$("#legendtitle").click(function(){
+		$("#legend").slideToggle("slow");
+    });
+	
+	$('#help').click(function(){
+		$('#helppic').fadeIn();
+	});
 
+	$('#btnclose').click(function(){
+		$('#helppic').fadeOut();
+	});
+	
+	
     function hidebar(){
 		//document.getElementById("right").style.visibility="hidden";
 		$("#right").fadeOut("slow");
@@ -401,7 +414,7 @@
 		}
 	}
 
-	var isHiden = true;
+	var isHiden = false;
 	$('#left3').click(function(){
 		var lr = document.getElementById("lr");
 	    if(isHiden){
