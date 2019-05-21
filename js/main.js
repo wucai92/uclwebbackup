@@ -333,7 +333,6 @@
 		$('#helppic').fadeOut();
 	});
 	
-	
     function hidebar(){
 		//document.getElementById("right").style.visibility="hidden";
 		$("#right").fadeOut("slow");
