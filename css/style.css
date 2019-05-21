@@ -67,15 +67,6 @@ a:hover {color:#B29F7D;text-decoration:none;}
 	font-size:20px;
 }
 
-#btnclose{
-	position: absolute;
-	top:90%;
-	width:100%;
-	z-index:3;
-	color:#ffffff;
-	text-align:center;
-}
-
 #help{
 	position: absolute;
 	width: 174px;
@@ -515,7 +506,7 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
     box-sizing: border-box;
 }
 .onoffswitch2-inner2:before {
-    content: "Static";
+    content: "Betweenness";
 	text-align: center;
     padding-right: 0px;
     margin-top: -4.5px;
@@ -525,9 +516,9 @@ display: block; overflow: hidden; cursor: pointer; height: 20px;
     background-color: #FFFFFF; color:#373E4A;
 }
 .onoffswitch2-inner2:after {
-    content: "Dynamic";
+    content: "Eigenvector";
 	text-align: center;
-    margin-left: -30px;
+    margin-left: -23px;
 	margin-top: -4.5px;
     font-size:12px;
     font-weight:normal;

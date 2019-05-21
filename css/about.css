@@ -6,7 +6,7 @@ html, body {
 	position: absolute;
 	height: 100%;
     width: 100%;
-	text-align：center;
+	text-align:center;
 	background-color: #F8FBFF;
 	z-index:1;
 	font-size:25px;
@@ -110,7 +110,7 @@ span{
 	text-align:justify;
 	z-index:1;
 	margin: 0;
-  line-height: 200%;
+	line-height: 200%;
 }
 
 #aboutus{
@@ -127,7 +127,7 @@ span{
 #page2{
 	position:absolute;
 	top:100%;
-	height:70%;
+	height:100%;
     width: 100%;
 	background-color: #D0D7E1;
 	z-index:1;
@@ -139,7 +139,7 @@ span{
 
 #page3{
 	position:absolute;
-	top:170%;
+	top:200%;
 	height:100%;
     width: 100%;
 	background-color: #F8FBFF;
@@ -152,7 +152,7 @@ span{
 
 #page4{
 	position:absolute;
-	top:270%;
+	top:300%;
 	height:100%;
     width: 100%;
 	background-color: #D0D7E1;
@@ -165,8 +165,8 @@ span{
 
 #page5{
 	position:absolute;
-	top:370%;
-	height:70%;
+	top:400%;
+	height:100%;
     width: 100%;
 	background-color: #F8FBFF;
 	z-index:1;

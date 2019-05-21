@@ -6,7 +6,7 @@ html, body {
 	position: absolute;
 	height: 100%;
     width: 100%;
-	text-align：center;
+	text-align:center;
 	z-index:1;
 	font-size:25px;
 	font-family: 'Roboto';
@@ -131,7 +131,7 @@ span{
 
 #page2{
 	position:absolute;
-  top:800px;
+    top:800px;
 	height:500px;
     width: 100%;
 	background-color: #D0D7E1;
@@ -144,7 +144,7 @@ span{
 
 #page3{
 	position:absolute;
-  top:1300px;
+    top:1300px;
 	height:1900px;
     width: 100%;
 	background-color: #F8FBFF;
@@ -157,7 +157,7 @@ span{
 
 #page4{
 	position:absolute;
-  top:3200px;
+    top:3200px;
 	height:2200px;
     width: 100%;
 	background-color: #D0D7E1;
@@ -170,7 +170,7 @@ span{
 
 #page5{
 	position:absolute;
-  top:5400px;
+    top:5400px;
 	height:1700px;
     width: 100%;
 	background-color: #F8FBFF;
